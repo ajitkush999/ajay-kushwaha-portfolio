@@ -305,28 +305,26 @@ body.light-theme .navbar.scrolled {
 
 
 .brand-mark {
-
     width: 42px;
     height: 42px;
 
-    display: grid;
-
-    place-items: center;
+    display: block;
+    flex-shrink: 0;
 
     border-radius: 50%;
+    overflow: hidden;
 
     background: var(--accent);
-
-    color: #090909;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
 }
 
+.brand-mark img {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: cover;
+    object-position: center 18%;
+}
 
 .brand-text {
 
@@ -947,7 +945,7 @@ body.light-theme .theme-toggle .moon {
     filter: none;
     animation: none;
 
-    transition: opacity 0.8s ease;
+    transition: opacity 1.2s cubic-bezier(.4, 0, .2, 1);
 }
 
 @keyframes heroFloat {

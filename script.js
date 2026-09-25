@@ -1990,8 +1990,14 @@ if (featuredCard && featuredImages.length) {
 
         if (!item || !featuredCircle) return;
 
-        featuredCircle.style.backgroundImage =
-            `url("${item.image}")`;
+        featuredCircle.style.opacity = "0.15";
+
+setTimeout(() => {
+    featuredCircle.style.backgroundImage =
+        `url("${item.image}")`;
+
+    featuredCircle.style.opacity = "1";
+}, 300);
 
         featuredCircle.style.backgroundSize = "cover";
         featuredCircle.style.backgroundPosition = "center";
@@ -2019,7 +2025,7 @@ if (featuredCard && featuredImages.length) {
 
         showFeaturedImage(featuredIndex);
 
-    }, 4000);
+    }, 5000);
 }
 
 /* =========================================================
