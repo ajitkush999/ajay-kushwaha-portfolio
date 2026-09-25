@@ -431,7 +431,7 @@ const projectData = {
             IMAGE PATH
         */
 
-        image: "",
+        image: "images/project-02-product-advertising.jpg",
 
 
         description:
@@ -477,7 +477,7 @@ const projectData = {
             IMAGE PATH
         */
 
-        image: "",
+        image: "images/project-03-packaging-design.jpg",
 
 
         description:
@@ -523,7 +523,7 @@ const projectData = {
             IMAGE PATH
         */
 
-        image: "",
+        image: "images/project-04-print-production.jpg",
 
 
         description:
@@ -1938,7 +1938,89 @@ function preloadImage(src) {
     );
 
 }
+/* ============================================================
+   FEATURED HERO IMAGES
+   Future mein sirf yahan image names change karne hain.
+============================================================ */
 
+const featuredImages = [
+    {
+        image: "images/featured-01-kilian-campaign.jpg",
+        title: "KILIAN",
+        small: "VISUAL CAMPAIGN"
+    },
+    {
+        image: "images/featured-02-dior-prestige.jpg",
+        title: "DIOR",
+        small: "PRODUCT ADVERTISING"
+    },
+    {
+        image: "images/featured-03-dior-prestige.jpg",
+        title: "DIOR PRESTIGE",
+        small: "LUXURY VISUAL DESIGN"
+    },
+    {
+        image: "images/featured-04-ysl-beauty.jpg",
+        title: "YSL BEAUTY",
+        small: "BEAUTY CAMPAIGN"
+    }
+];
+
+const featuredCard = document.querySelector(".hero-card");
+
+if (featuredCard && featuredImages.length) {
+
+    const featuredCircle =
+        featuredCard.querySelector(".art-circle");
+
+    const featuredText =
+        featuredCard.querySelector(".art-text");
+
+    const featuredSmall =
+        featuredCard.querySelector(".art-small");
+
+    const featuredCounter =
+        featuredCard.querySelector(".hero-card-top span:nth-child(2)");
+
+    let featuredIndex = 0;
+
+    function showFeaturedImage(index) {
+
+        const item = featuredImages[index];
+
+        if (!item || !featuredCircle) return;
+
+        featuredCircle.style.backgroundImage =
+            `url("${item.image}")`;
+
+        featuredCircle.style.backgroundSize = "cover";
+        featuredCircle.style.backgroundPosition = "center";
+
+        if (featuredText) {
+            featuredText.textContent = item.title;
+        }
+
+        if (featuredSmall) {
+            featuredSmall.textContent = item.small;
+        }
+
+        if (featuredCounter) {
+            featuredCounter.textContent =
+                `${String(index + 1).padStart(2, "0")} / ${String(featuredImages.length).padStart(2, "0")}`;
+        }
+    }
+
+    showFeaturedImage(featuredIndex);
+
+    setInterval(() => {
+
+        featuredIndex =
+            (featuredIndex + 1) % featuredImages.length;
+
+        showFeaturedImage(featuredIndex);
+
+    }, 4000);
+}
 
 /* =========================================================
    27. CONSOLE MESSAGE

@@ -931,32 +931,24 @@ body.light-theme .theme-toggle .moon {
 
 }
 
-
 .art-circle {
-
     position: absolute;
+    inset: -2%;
+    width: 104%;
+    height: 104%;
 
-    width: 72%;
+    border-radius: 40px;
+    overflow: hidden;
 
-    aspect-ratio: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-    border-radius: 50%;
+    filter: none;
+    animation: none;
 
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #eaff94,
-            var(--accent) 35%,
-            #557000 75%,
-            #111 100%
-        );
-
-    filter: blur(.2px);
-
-    animation: heroFloat 5s ease-in-out infinite;
-
+    transition: opacity 0.8s ease;
 }
-
 
 @keyframes heroFloat {
 
