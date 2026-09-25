@@ -385,7 +385,7 @@ const projectData = {
             image: "images/project-01.jpg",
         */
 
-        image: "",
+        image: "images/project-01-visual-campaign.jpg",
 
 
         description:
