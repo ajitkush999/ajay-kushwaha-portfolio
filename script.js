@@ -736,7 +736,6 @@ const serviceData = {
 
 const experienceData = {
 
-
     main: {
 
         number: "01",
@@ -747,37 +746,60 @@ const experienceData = {
         title:
             "Graphic Designer & Printing Machine Operator",
 
-
-        /*
-            EXPERIENCE IMAGE
-
-            Future mein image lagani ho:
-
-            image: "images/experience.jpg"
-        */
-
-        image: "",
-
+        image:
+            "images/experience-ajay-kushwaha.png",
 
         description:
-            "Graphic Designer and Printing Machine Operator with experience in designing and printing work. Skilled in digital and UV printing machines, preparing designs for printing, and handling regular machine operations while maintaining accuracy and quality.",
-
+            "Graphic Designer and Printing Machine Operator with 7+ years of experience across graphic design, digital printing and UV printing. Experienced in artwork preparation, print production, machine operation and quality checking.",
 
         details: [
 
             {
-                label: "ROLE",
-                value: "Graphic Designer"
+                label: "CURRENT ROLE",
+                value:
+                    "Graphic Designer — Signwork, Saudi Arabia"
+            },
+
+            {
+                label: "2022 — 2023",
+                value:
+                    "Graphic Designer — Signwork, Dubai, UAE"
+            },
+
+            {
+                label: "2017 — 2022",
+                value:
+                    "Graphic Designer & Printing Machine Operator — JMD Graphics, Delhi"
             },
 
             {
                 label: "SPECIALIZATION",
-                value: "Digital & UV Printing"
+                value:
+                    "Digital & UV Printing"
             },
 
             {
-                label: "WORK",
-                value: "Design & Production"
+                label: "DESIGN TOOLS",
+                value:
+                    "Illustrator, Photoshop, CorelDRAW, Acrobat"
+            },
+
+            {
+                label: "MACHINE EXPERIENCE",
+                value:
+                    "Flatbed, UV Roll to Roll, Epson, HP, Roland, Mimaki"
+            },
+
+            {
+                label: "PRODUCTION",
+                value:
+                    "Artwork Preparation, Print Setup & Quality Control"
+            },
+
+            {
+                label: "CORE WORK",
+                value:
+                    "Graphic Design, Print Production & Visual Design"
             }
 
         ]
@@ -785,7 +807,6 @@ const experienceData = {
     }
 
 };
-
 
 /* =========================================================
    10. UNIVERSAL MODAL
