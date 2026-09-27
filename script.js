@@ -582,7 +582,8 @@ const serviceData = {
             image: "images/service-graphic.jpg"
         */
 
-        image: "",
+        image:
+    "images/service-graphic-design.jpg",
 
 
         description:
@@ -623,7 +624,8 @@ const serviceData = {
 
         title: "Digital Printing",
 
-        image: "",
+        image:
+    "images/service-digital-printing.jpg",
 
         description:
             "Digital printing work including artwork preparation and regular production operations with attention to accuracy and quality.",
@@ -662,7 +664,8 @@ const serviceData = {
 
         title: "UV Printing",
 
-        image: "",
+        image:
+    "images/service-uv-printing.jpg",
 
         description:
             "UV printing machine operation and print preparation for production work.",
@@ -701,7 +704,8 @@ const serviceData = {
 
         title: "Print Preparation",
 
-        image: "",
+        image:
+    "images/service-print-preparation.jpg",
 
         description:
             "Preparing artwork and files for accurate production while keeping layouts, sizing and final output requirements in mind.",
