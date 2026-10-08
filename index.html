@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -10,97 +8,119 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Ajay Kushwaha | Graphic Designer</title>
-
     <meta
         name="description"
-        content="Ajay Kushwaha — Graphic Designer and Printing Machine Operator specializing in digital and UV printing."
+        content="Ajay Kushwaha — Graphic Designer and Printing Machine Operator."
     >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>
+        Ajay Kushwaha — Graphic Designer
+    </title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
-     SCROLL PROGRESS
-===================================================== -->
+<!-- =========================================================
+     LOADER
+========================================================= -->
 
-<div class="scroll-progress">
-    <span id="scrollProgress"></span>
+<div class="loader" id="loader">
+
+    <div class="loader-inner">
+
+        <div class="loader-counter">
+            <span id="loaderCounter">0</span>%
+        </div>
+
+        <div class="loader-line">
+            <span id="loaderProgress"></span>
+        </div>
+
+        <div class="loader-name" id="loaderName">
+            AJAY KUSHWAHA
+        </div>
+
+    </div>
+
 </div>
 
 
 
-<!-- =====================================================
+<!-- =========================================================
+     SCROLL PROGRESS
+========================================================= -->
+
+<div
+    class="scroll-progress"
+    id="scrollProgress"
+></div>
+
+
+
+<!-- =========================================================
      NAVBAR
-===================================================== -->
+========================================================= -->
 
 <header
     class="navbar"
     id="navbar"
 >
 
-    <div class="nav-inner">
+    <div class="navbar-inner">
 
+
+        <!-- BRAND -->
 
         <a
             href="#home"
             class="brand"
         >
 
-            <span class="brand-mark">
-                <img src="images/ajay.jpeg" alt="Ajay Kushwaha">
-            </span>
+            <img
+                src="images/ajay.jpeg"
+                alt="Ajay Kushwaha"
+                class="brand-photo"
+            >
 
-            <span class="brand-text">
-
-                <strong>
-                    Ajay
-                </strong>
-
-                <small>
-                    Kushwaha
-                </small>
-
+            <span class="brand-name">
+                AJAY KUSHWHA
             </span>
 
         </a>
 
 
+
+        <!-- DESKTOP NAV -->
+
         <nav class="desktop-nav">
 
-            <a href="#about">About</a>
+            <a href="#about">
+                ABOUT
+            </a>
 
-            <a href="#work">Work</a>
+            <a href="#work">
+                WORK
+            </a>
 
-            <a href="#services">Services</a>
+            <a href="#services">
+                SERVICES
+            </a>
 
-            <!-- <a href="#stats">Numbers</a> -->
-
-            <a href="#experience">Experience</a>
-
-            <!-- <a href="#full-portfolio">Portfolio</a> -->
-
-            <!-- <a href="#contact">Contact</a> -->
+            <a href="#experience">
+                EXPERIENCE
+            </a>
 
         </nav>
 
 
-        <div class="nav-actions">
+
+        <!-- RIGHT -->
+
+        <div class="navbar-actions">
 
             <button
                 class="theme-toggle"
@@ -108,11 +128,7 @@
                 type="button"
                 aria-label="Toggle theme"
             >
-
-                <span class="sun">☀</span>
-
-                <span class="moon">☾</span>
-
+                <span></span>
             </button>
 
 
@@ -122,10 +138,8 @@
                 type="button"
                 aria-label="Open menu"
             >
-
                 <span></span>
                 <span></span>
-
             </button>
 
         </div>
@@ -133,24 +147,29 @@
     </div>
 
 
+
+    <!-- MOBILE MENU -->
+
     <div
         class="mobile-menu"
         id="mobileMenu"
     >
 
-        <a href="#about">About</a>
+        <a href="#about">
+            ABOUT
+        </a>
 
-        <a href="#work">Work</a>
+        <a href="#work">
+            WORK
+        </a>
 
-        <a href="#services">Services</a>
+        <a href="#services">
+            SERVICES
+        </a>
 
-        <a href="#stats">Numbers</a>
-
-        <a href="#experience">Experience</a>
-
-        <a href="#full-portfolio">Portfolio</a>
-
-        <a href="#contact">Contact</a>
+        <a href="#experience">
+            EXPERIENCE
+        </a>
 
     </div>
 
@@ -158,129 +177,156 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      HERO
-===================================================== -->
+========================================================= -->
 
-<section
-    class="hero"
-    id="home"
->
-
-    <div class="hero-grid"></div>
-
-    <div class="hero-glow glow-one"></div>
-
-    <div class="hero-glow glow-two"></div>
+<main id="home">
 
 
-    <div class="hero-content reveal">
+<section class="hero section">
 
-        <div class="eyebrow">
-            GRAPHIC DESIGNER
+
+    <div class="container hero-container">
+
+
+        <!-- HERO TEXT -->
+
+        <div class="hero-content reveal">
+
+
+            <div class="hero-kicker">
+                GRAPHIC DESIGNER / PRINT PRODUCTION
+            </div>
+
+
+            <h1 class="hero-title">
+
+                <span>
+                    I CREATE
+                </span>
+
+                <span>
+                    VISUALS THAT
+                </span>
+
+                <span class="hero-accent">
+                    STAND OUT.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Graphic Designer and Printing Machine
+                Operator working across digital design,
+                print production and UV printing.
+
+            </p>
+
+
         </div>
 
 
-        <h1>
 
-            I create
-            <span>visuals</span>
-            that stand out.
+        <!-- =================================================
+             FLOATING IMAGE COMPOSITION
 
-        </h1>
+             Images can be replaced later.
+
+             Main image:
+             images/project-01-visual-campaign.jpg
+
+             Additional images:
+             images/project-02-product-advertising.jpg
+             images/project-03-packaging-design.jpg
+             images/project-04-print-production.jpg
+        ================================================== -->
+
+        <div
+            class="hero-visual"
+            aria-label="Selected design work"
+        >
 
 
-        <p class="hero-description">
-
-            Graphic Designer and Printing Machine Operator
-            working across digital design, print production
-            and UV printing.
-
-        </p>
-
-
-        <div class="hero-buttons">
-
-            <a
-                href="#work"
-                class="button button-primary"
+            <div
+                class="hero-image hero-image-main image-slot"
             >
 
-                View My Work
+                <img
+                    src="images/project-01-visual-campaign.jpg"
+                    alt="Visual campaign design"
+                >
 
-                <span>↗</span>
-
-            </a>
+            </div>
 
 
-            <a
-                href="#contact"
-                class="button button-secondary"
+
+            <div
+                class="hero-image hero-image-small hero-image-one image-slot"
             >
 
-                Let's Talk
+                <img
+                    src="images/project-02-product-advertising.jpg"
+                    alt="Product advertising design"
+                >
 
-            </a>
+            </div>
+
+
+
+            <div
+                class="hero-image hero-image-small hero-image-two image-slot"
+            >
+
+                <img
+                    src="images/project-03-packaging-design.jpg"
+                    alt="Packaging design"
+                >
+
+            </div>
+
+
+
+            <div
+                class="hero-image hero-image-small hero-image-three image-slot"
+            >
+
+                <img
+                    src="images/project-04-print-production.jpg"
+                    alt="Print production"
+                >
+
+            </div>
+
 
         </div>
 
-    </div>
 
 
-    <div class="hero-visual reveal">
+        <!-- HERO BOTTOM -->
 
-        <div class="hero-card">
+        <div class="hero-bottom reveal">
 
-            <div class="hero-card-top">
+            <span>
+                GRAPHIC DESIGN
+            </span>
 
-                <span>
-                    SELECTED
-                </span>
+            <span>
+                DIGITAL PRINT
+            </span>
 
-                <span>
-                    01 / 04
-                </span>
+            <span>
+                UV PRINT
+            </span>
 
-            </div>
-
-
-            <div class="hero-card-art">
-
-                <div class="art-circle"></div>
-
-                <div class="art-text">
-                    CREATE
-                </div>
-
-                <div class="art-small">
-                    DESIGN / PRINT / VISUAL
-                </div>
-
-            </div>
-
-
-            <div class="hero-card-bottom">
-
-                <span>
-                    Digital & UV
-                </span>
-
-                <span>
-                    Print
-                </span>
-
-            </div>
+            <span>
+                SCROLL ↓
+            </span>
 
         </div>
 
-    </div>
-
-
-    <div class="scroll-note">
-
-        <span></span>
-
-        SCROLL TO EXPLORE
 
     </div>
 
@@ -288,72 +334,18 @@
 
 
 
-<!-- =====================================================
-     MARQUEE
-===================================================== -->
-
-<section class="marquee-section">
-
-    <div class="marquee-track">
-
-
-        <div class="marquee-group">
-
-            <span>GRAPHIC DESIGN</span>
-            <i>✦</i>
-
-            <span>PRINT PRODUCTION</span>
-            <i>✦</i>
-
-            <span>DIGITAL PRINTING</span>
-            <i>✦</i>
-
-            <span>UV PRINTING</span>
-            <i>✦</i>
-
-            <span>VISUAL DESIGN</span>
-            <i>✦</i>
-
-        </div>
-
-
-        <!-- Duplicate group for seamless marquee loop -->
-
-        <div class="marquee-group">
-
-            <span>GRAPHIC DESIGN</span>
-            <i>✦</i>
-
-            <span>PRINT PRODUCTION</span>
-            <i>✦</i>
-
-            <span>DIGITAL PRINTING</span>
-            <i>✦</i>
-
-            <span>UV PRINTING</span>
-            <i>✦</i>
-
-            <span>VISUAL DESIGN</span>
-            <i>✦</i>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
+<!-- =========================================================
      ABOUT
-===================================================== -->
+========================================================= -->
 
 <section
     class="about section"
     id="about"
 >
 
+
     <div class="container">
+
 
         <div class="section-label reveal">
             ABOUT
@@ -363,72 +355,224 @@
         <div class="about-grid">
 
 
-            <div class="about-title reveal">
+            <!-- LEFT -->
+
+            <div class="about-heading reveal">
 
                 <h2>
 
                     Design is not
-                    <span>decoration.</span>
+                    <span>
+                        decoration.
+                    </span>
 
                 </h2>
 
             </div>
 
 
-            <div class="about-text reveal">
+
+            <!-- RIGHT -->
+
+            <div
+                class="about-card glass-card reveal"
+            >
+
+
+                <span class="about-card-kicker">
+                    GRAPHIC DESIGNER & PRINTING MACHINE OPERATOR
+                </span>
+
 
                 <p>
 
-                    Graphic Designer and Printing Machine
-                    Operator with experience in designing
-                    and printing work.
+                    I work across graphic design,
+                    digital printing and UV printing —
+                    from artwork preparation to final
+                    production.
 
                 </p>
 
 
-                <p>
+                <div class="about-specialties">
 
-                    Skilled in digital and UV printing
-                    machines, preparing designs for printing,
-                    and handling regular machine operations
-                    while maintaining accuracy and quality.
+                    <span>
+                        DESIGN
+                    </span>
 
-                </p>
+                    <span>
+                        DIGITAL PRINT
+                    </span>
 
-
-                <div class="about-stats">
-
-                    <div>
-
-                        <strong>01</strong>
-
-                        <span>Design</span>
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>02</strong>
-
-                        <span>Digital Print</span>
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>03</strong>
-
-                        <span>UV Print</span>
-
-                    </div>
+                    <span>
+                        UV PRINT
+                    </span>
 
                 </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             EXPERIENCE IN NUMBERS
+        ================================================== -->
+
+        <div class="stats-block">
+
+
+            <div class="stats-heading reveal">
+
+
+                <div class="section-label">
+                    EXPERIENCE IN NUMBERS
+                </div>
+
+
+                <h2>
+
+                    Experience you can
+                    <span>
+                        measure.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    A quick look at the experience,
+                    projects and professional journey
+                    behind the work.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="stats-grid">
+
+
+                <!-- YEARS -->
+
+                <div
+                    class="stat-item glass-card reveal"
+                >
+
+                    <div class="stat-number">
+
+                        <span
+                            class="counter"
+                            data-target="7"
+                        >
+                            0
+                        </span>
+
+                        <span>
+                            +
+                        </span>
+
+                    </div>
+
+
+                    <span class="stat-label">
+                        YEARS EXPERIENCE
+                    </span>
+
+                </div>
+
+
+
+                <!-- PROJECTS -->
+
+                <div
+                    class="stat-item glass-card reveal"
+                >
+
+                    <div class="stat-number">
+
+                        <span
+                            class="counter"
+                            data-target="29"
+                        >
+                            0
+                        </span>
+
+                        <span>
+                            +
+                        </span>
+
+                    </div>
+
+
+                    <span class="stat-label">
+                        PROJECTS
+                    </span>
+
+                </div>
+
+
+
+                <!-- COUNTRIES -->
+
+                <div
+                    class="stat-item glass-card reveal"
+                >
+
+                    <div class="stat-number">
+
+                        <span
+                            class="counter"
+                            data-target="3"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <span class="stat-label">
+                        COUNTRIES
+                    </span>
+
+                </div>
+
+
+
+                <!-- SERVICES -->
+
+                <div
+                    class="stat-item glass-card reveal"
+                >
+
+                    <div class="stat-number">
+
+                        <span
+                            class="counter"
+                            data-target="4"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <span class="stat-label">
+                        CORE SERVICES
+                    </span>
+
+                </div>
+
 
             </div>
 
         </div>
+
 
     </div>
 
@@ -436,156 +580,132 @@
 
 
 
-<!-- =====================================================
-     LIQUID TRANSITION
-===================================================== -->
-
-<div class="liquid-transition">
-
-    <div class="liquid-shape"></div>
-
-</div>
-<!-- =====================================================
-     WORK
-===================================================== -->
+<!-- =========================================================
+     SELECTED WORK
+========================================================= -->
 
 <section
     class="work section"
     id="work"
 >
 
+
     <div class="container">
+
+
+        <div class="section-label reveal">
+            SELECTED WORK
+        </div>
 
 
         <div class="work-heading reveal">
 
-            <div class="section-label">
-                SELECTED WORK
-            </div>
-
             <h2>
-
-                Visual work
-                <span>with purpose.</span>
-
+                Selected work.
             </h2>
+
+            <p>
+                A selection of graphic design,
+                advertising, packaging and
+                print production work.
+            </p>
 
         </div>
 
 
 
-        <div class="work-grid">
+        <div class="projects-grid">
 
 
             <!-- =================================================
                  PROJECT 01
-
-                 IMAGE:
-                 Is project ki image baad mein script.js mein
-                 project1 ke andar add karna.
             ================================================== -->
 
             <article
-                class="work-card work-large reveal"
-                data-project="project1"
+                class="project-card glass-card reveal"
+                data-project="project-1"
                 tabindex="0"
                 role="button"
             >
 
-                <div class="work-image">
-
-                    <!-- IMAGE WILL BE LOADED FROM script.js -->
+                <div
+                    class="project-image image-slot"
+                >
 
                     <img
-                        src=""
-                        alt=""
-                        class="work-card-image"
+                        src="images/project-01-visual-campaign.jpg"
+                        alt="Visual Campaign"
                     >
-
-                    <div class="work-placeholder">
-                        PROJECT IMAGE
-                    </div>
-
-                    <div class="work-overlay">
-
-                        <span>01</span>
-
-                        <strong>
-                            Visual Campaign
-                        </strong>
-
-                        <span>↗</span>
-
-                    </div>
 
                 </div>
 
 
-                <div class="work-info">
+                <div class="project-info">
 
                     <span>
-                        GRAPHIC DESIGN
+                        01 / GRAPHIC DESIGN
                     </span>
 
                     <h3>
                         Visual Campaign
                     </h3>
 
+                    <p>
+                        Creative visual direction,
+                        composition, artwork preparation
+                        and print-ready output.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
+
                 </div>
 
             </article>
 
 
 
-            <!-- =================================================
-                 PROJECT 02
-            ================================================== -->
+            <!-- PROJECT 02 -->
 
             <article
-                class="work-card reveal"
-                data-project="project2"
+                class="project-card glass-card reveal"
+                data-project="project-2"
                 tabindex="0"
                 role="button"
             >
 
-                <div class="work-image">
-
-                    <!-- IMAGE WILL BE LOADED FROM script.js -->
+                <div
+                    class="project-image image-slot"
+                >
 
                     <img
-                        src=""
-                        alt=""
-                        class="work-card-image"
+                        src="images/project-02-product-advertising.jpg"
+                        alt="Product Advertising"
                     >
-
-                    <div class="work-placeholder">
-                        PROJECT IMAGE
-                    </div>
-
-                    <div class="work-overlay">
-
-                        <span>02</span>
-
-                        <strong>
-                            Product Advertising
-                        </strong>
-
-                        <span>↗</span>
-
-                    </div>
 
                 </div>
 
 
-                <div class="work-info">
+                <div class="project-info">
 
                     <span>
-                        ADVERTISING
+                        02 / ADVERTISING
                     </span>
 
                     <h3>
-                        Product Design
+                        Product Advertising
                     </h3>
+
+                    <p>
+                        Product-focused advertising
+                        layouts, composition and
+                        brand presentation.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
 
                 </div>
 
@@ -593,56 +713,140 @@
 
 
 
-            <!-- =================================================
-                 PROJECT 03
-            ================================================== -->
+            <!-- PROJECT 03 -->
 
             <article
-                class="work-card reveal"
-                data-project="project3"
+                class="project-card glass-card reveal"
+                data-project="project-3"
                 tabindex="0"
                 role="button"
             >
 
-                <div class="work-image">
-
-                    <!-- IMAGE WILL BE LOADED FROM script.js -->
+                <div
+                    class="project-image image-slot"
+                >
 
                     <img
-                        src=""
-                        alt=""
-                        class="work-card-image"
+                        src="images/project-03-packaging-design.jpg"
+                        alt="Packaging Design"
                     >
-
-                    <div class="work-placeholder">
-                        PROJECT IMAGE
-                    </div>
-
-                    <div class="work-overlay">
-
-                        <span>03</span>
-
-                        <strong>
-                            Packaging
-                        </strong>
-
-                        <span>↗</span>
-
-                    </div>
 
                 </div>
 
 
-                <div class="work-info">
+                <div class="project-info">
 
                     <span>
-                        PACKAGING
+                        03 / PACKAGING
                     </span>
 
                     <h3>
                         Packaging Design
                     </h3>
 
+                    <p>
+                        Packaging artwork, visual layout,
+                        print preparation and production
+                        support.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- PROJECT 04 -->
+
+            <article
+                class="project-card glass-card reveal"
+                data-project="project-4"
+                tabindex="0"
+                role="button"
+            >
+
+                <div
+                    class="project-image image-slot"
+                >
+
+                    <img
+                        src="images/project-04-print-production.jpg"
+                        alt="Print Production"
+                    >
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <span>
+                        04 / PRODUCTION
+                    </span>
+
+                    <h3>
+                        Print Production
+                    </h3>
+
+                    <p>
+                        Artwork preparation, print setup,
+                        digital and UV production and
+                        quality checking.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- PROJECT 05 -->
+
+            <article
+                class="project-card glass-card reveal"
+                data-project="project-5"
+                tabindex="0"
+                role="button"
+            >
+
+                <div
+                    class="project-image image-slot"
+                >
+
+                    <img
+                        src="images/featured-01-kilian-campaign.jpg"
+                        alt="Luxury Beauty Campaign"
+                    >
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <span>
+                        05 / LUXURY / BEAUTY
+                    </span>
+
+                    <h3>
+                        Luxury Beauty Campaign
+                    </h3>
+
+                    <p>
+                        Premium beauty and luxury
+                        visual communication.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
+
                 </div>
 
             </article>
@@ -650,54 +854,215 @@
 
 
             <!-- =================================================
-                 PROJECT 04
+                 EXTRA PROJECT 06
             ================================================== -->
 
             <article
-                class="work-card work-wide reveal"
-                data-project="project4"
+                class="project-card project-hidden glass-card"
+                data-project="project-6"
                 tabindex="0"
                 role="button"
             >
 
-                <div class="work-image">
+                <div
+                    class="project-image image-slot"
+                >
 
-                    <!-- IMAGE WILL BE LOADED FROM script.js -->
-
-                    <img
-                        src=""
-                        alt=""
-                        class="work-card-image"
-                    >
-
-                    <div class="work-placeholder">
-                        PROJECT IMAGE
-                    </div>
-
-                    <div class="work-overlay">
-
-                        <span>04</span>
-
-                        <strong>
-                            Print Production
-                        </strong>
-
-                        <span>↗</span>
-
-                    </div>
+                    <!-- ADD IMAGE LATER -->
 
                 </div>
 
 
-                <div class="work-info">
+                <div class="project-info">
 
                     <span>
-                        PRINT
+                        06 / CREATIVE WORK
                     </span>
 
                     <h3>
-                        Print Production
+                        Additional Project
                     </h3>
+
+                    <p>
+                        Additional creative work
+                        from the full portfolio.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EXTRA PROJECT 07 -->
+
+            <article
+                class="project-card project-hidden glass-card"
+                data-project="project-7"
+                tabindex="0"
+                role="button"
+            >
+
+                <div
+                    class="project-image image-slot"
+                >
+
+                    <!-- ADD IMAGE LATER -->
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <span>
+                        07 / CREATIVE WORK
+                    </span>
+
+                    <h3>
+                        Additional Project
+                    </h3>
+
+                    <p>
+                        Additional creative work
+                        from the full portfolio.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EXTRA PROJECT 08 -->
+
+            <article
+                class="project-card project-hidden glass-card"
+                data-project="project-8"
+                tabindex="0"
+                role="button"
+            >
+
+                <div
+                    class="project-image image-slot"
+                >
+
+                    <!-- ADD IMAGE LATER -->
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <span>
+                        08 / CREATIVE WORK
+                    </span>
+
+                    <h3>
+                        Additional Project
+                    </h3>
+
+                    <p>
+                        Additional creative work
+                        from the full portfolio.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EXTRA PROJECT 09 -->
+
+            <article
+                class="project-card project-hidden glass-card"
+                data-project="project-9"
+                tabindex="0"
+                role="button"
+            >
+
+                <div
+                    class="project-image image-slot"
+                >
+
+                    <!-- ADD IMAGE LATER -->
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <span>
+                        09 / CREATIVE WORK
+                    </span>
+
+                    <h3>
+                        Additional Project
+                    </h3>
+
+                    <p>
+                        Additional creative work
+                        from the full portfolio.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EXTRA PROJECT 10 -->
+
+            <article
+                class="project-card project-hidden glass-card"
+                data-project="project-10"
+                tabindex="0"
+                role="button"
+            >
+
+                <div
+                    class="project-image image-slot"
+                >
+
+                    <!-- ADD IMAGE LATER -->
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <span>
+                        10 / CREATIVE WORK
+                    </span>
+
+                    <h3>
+                        Additional Project
+                    </h3>
+
+                    <p>
+                        Additional creative work
+                        from the full portfolio.
+                    </p>
+
+                    <strong>
+                        ↗
+                    </strong>
 
                 </div>
 
@@ -705,6 +1070,23 @@
 
 
         </div>
+
+
+
+        <!-- SEE MORE -->
+
+        <div class="work-more reveal">
+
+            <button
+                type="button"
+                id="seeMoreWork"
+                class="outline-button"
+            >
+                SEE MORE WORK
+            </button>
+
+        </div>
+
 
     </div>
 
@@ -712,14 +1094,15 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      SERVICES
-===================================================== -->
+========================================================= -->
 
 <section
     class="services section"
     id="services"
 >
+
 
     <div class="container">
 
@@ -732,98 +1115,136 @@
         <div class="services-heading reveal">
 
             <h2>
-
-                What I
-                <span>work on.</span>
-
+                What I work on.
             </h2>
 
         </div>
 
 
 
-        <div class="services-list">
+        <div class="services-grid">
 
 
-            <!-- =================================================
-                 SERVICE 01
-            ================================================== -->
+            <!-- SERVICE 01 -->
 
-            <div
-                class="service-item reveal"
-                data-service="graphic"
+            <article
+                class="service-card glass-card reveal"
+                data-service="graphic-design"
                 tabindex="0"
                 role="button"
             >
 
-                <span>01</span>
+                <div
+                    class="service-image image-slot"
+                >
 
-                <div>
+                    <img
+                        src="images/service-graphic-design.jpg"
+                        alt="Graphic Design"
+                    >
+
+                </div>
+
+
+                <div class="service-content">
+
+                    <span>
+                        01
+                    </span>
 
                     <h3>
                         Graphic Design
                     </h3>
 
                     <p>
-                        Creative visual design for
-                        marketing, advertising and
-                        brand communication.
+                        Visual communication,
+                        composition, branding and
+                        production-ready artwork.
                     </p>
+
+                    <strong>
+                        ↗
+                    </strong>
 
                 </div>
 
-                <strong>↗</strong>
-
-            </div>
+            </article>
 
 
 
-            <!-- =================================================
-                 SERVICE 02
-            ================================================== -->
+            <!-- SERVICE 02 -->
 
-            <div
-                class="service-item reveal"
-                data-service="digital"
+            <article
+                class="service-card glass-card reveal"
+                data-service="digital-printing"
                 tabindex="0"
                 role="button"
             >
 
-                <span>02</span>
+                <div
+                    class="service-image image-slot"
+                >
 
-                <div>
+                    <img
+                        src="images/service-digital-printing.jpg"
+                        alt="Digital Printing"
+                    >
+
+                </div>
+
+
+                <div class="service-content">
+
+                    <span>
+                        02
+                    </span>
 
                     <h3>
                         Digital Printing
                     </h3>
 
                     <p>
-                        Preparing designs and handling
-                        digital printing production.
+                        Digital printing production
+                        with artwork preparation and
+                        quality-focused output.
                     </p>
+
+                    <strong>
+                        ↗
+                    </strong>
 
                 </div>
 
-                <strong>↗</strong>
-
-            </div>
+            </article>
 
 
 
-            <!-- =================================================
-                 SERVICE 03
-            ================================================== -->
+            <!-- SERVICE 03 -->
 
-            <div
-                class="service-item reveal"
-                data-service="uv"
+            <article
+                class="service-card glass-card reveal"
+                data-service="uv-printing"
                 tabindex="0"
                 role="button"
             >
 
-                <span>03</span>
+                <div
+                    class="service-image image-slot"
+                >
 
-                <div>
+                    <img
+                        src="images/service-uv-printing.jpg"
+                        alt="UV Printing"
+                    >
+
+                </div>
+
+
+                <div class="service-content">
+
+                    <span>
+                        03
+                    </span>
 
                     <h3>
                         UV Printing
@@ -834,28 +1255,42 @@
                         and print preparation.
                     </p>
 
+                    <strong>
+                        ↗
+                    </strong>
+
                 </div>
 
-                <strong>↗</strong>
-
-            </div>
+            </article>
 
 
 
-            <!-- =================================================
-                 SERVICE 04
-            ================================================== -->
+            <!-- SERVICE 04 -->
 
-            <div
-                class="service-item reveal"
-                data-service="preparation"
+            <article
+                class="service-card glass-card reveal"
+                data-service="print-preparation"
                 tabindex="0"
                 role="button"
             >
 
-                <span>04</span>
+                <div
+                    class="service-image image-slot"
+                >
 
-                <div>
+                    <img
+                        src="images/service-print-preparation.jpg"
+                        alt="Print Preparation"
+                    >
+
+                </div>
+
+
+                <div class="service-content">
+
+                    <span>
+                        04
+                    </span>
 
                     <h3>
                         Print Preparation
@@ -866,11 +1301,13 @@
                         for accurate production.
                     </p>
 
+                    <strong>
+                        ↗
+                    </strong>
+
                 </div>
 
-                <strong>↗</strong>
-
-            </div>
+            </article>
 
 
         </div>
@@ -881,215 +1318,168 @@
 
 
 
-<!-- =====================================================
-     EXPERIENCE IN NUMBERS
-
-     IMPORTANT:
-     Agar future mein numbers change karne hain,
-     neeche data-target ki value change karna.
-
-     Example:
-     data-target="7"
-     data-target="29"
-     data-target="20"
-===================================================== -->
-
-<section
-    class="stats-section section"
-    id="stats"
->
-
-    <div class="container">
-
-
-        <div class="section-label reveal">
-            EXPERIENCE IN NUMBERS
-        </div>
-
-
-        <div class="stats-header reveal">
-
-            <h2>
-
-                Experience you can
-                <span>measure.</span>
-
-            </h2>
-
-            <p>
-
-                A quick look at the scale of work
-                and experience behind the portfolio.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="stats-grid">
-
-
-            <!-- =================================================
-                 YEARS OF EXPERIENCE
-            ================================================== -->
-
-            <div class="stat-item reveal">
-
-                <!-- CHANGE 7 HERE LATER -->
-
-                <div class="stat-number">
-
-                    <span
-                        class="counter"
-                        data-target="7"
-                    >
-                        0
-                    </span>
-
-                    <strong>
-                        +
-                    </strong>
-
-                </div>
-
-                <span class="stat-label">
-                    YEARS OF EXPERIENCE
-                </span>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 PROJECTS
-            ================================================== -->
-
-            <div class="stat-item reveal">
-
-                <!-- CHANGE 29 HERE LATER -->
-
-                <div class="stat-number">
-
-                    <span
-                        class="counter"
-                        data-target="29"
-                    >
-                        0
-                    </span>
-
-                    <strong>
-                        +
-                    </strong>
-
-                </div>
-
-                <span class="stat-label">
-                    PROJECTS WORKED ON
-                </span>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 COMPANIES
-            ================================================== -->
-
-            <div class="stat-item reveal">
-
-                <!-- CHANGE 20 HERE LATER -->
-
-                <div class="stat-number">
-
-                    <span
-                        class="counter"
-                        data-target="20"
-                    >
-                        0
-                    </span>
-
-                    <strong>
-                        +
-                    </strong>
-
-                </div>
-
-                <span class="stat-label">
-                    COMPANIES WORKED WITH
-                </span>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
+<!-- =========================================================
      EXPERIENCE
-     
-     CLICK THE CARD TO OPEN THE FLOATING EXPERIENCE WINDOW
-===================================================== -->
+========================================================= -->
 
 <section
     class="experience section"
     id="experience"
 >
 
+
     <div class="container">
+
 
         <div class="section-label reveal">
             EXPERIENCE
         </div>
 
 
-        <div
-            class="experience-card reveal"
+
+        <!-- =================================================
+             SINGLE EXPERIENCE CARD
+
+             NO IMAGE
+
+             CLICK THIS CARD TO OPEN FULL DETAIL WINDOW
+        ================================================== -->
+
+        <article
+            class="experience-card glass-card reveal"
             data-experience="main"
             tabindex="0"
             role="button"
         >
 
-            <div class="experience-number">
-                01
-            </div>
+
+            <div class="experience-intro">
 
 
-            <div class="experience-main">
-
-                <span>
-                    GRAPHIC DESIGN & PRINT PRODUCTION
+                <span class="experience-kicker">
+                    7+ YEARS OF EXPERIENCE
                 </span>
+
 
                 <h2>
 
                     Graphic Designer &
-
-                    Printing Machine Operator
+                    <span>
+                        Printing Machine Operator
+                    </span>
 
                 </h2>
 
+
                 <p>
 
-                    Working across graphic design,
-                    digital printing and UV printing
-                    operations.
+                    A career built across graphic design,
+                    signwork, digital printing, UV printing,
+                    artwork preparation and production.
 
                 </p>
 
+
             </div>
 
 
-            <div class="experience-arrow">
-                ↗
+
+            <!-- CAREER PREVIEW -->
+
+            <div class="experience-preview">
+
+
+                <!-- 2023 -->
+
+                <div class="experience-preview-row">
+
+                    <span>
+                        2023 — PRESENT
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            SIGNWORK
+                        </strong>
+
+                        <small>
+                            SAUDI ARABIA · GRAPHIC DESIGNER
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 2022 -->
+
+                <div class="experience-preview-row">
+
+                    <span>
+                        2022 — 2023
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            SIGNWORK
+                        </strong>
+
+                        <small>
+                            DUBAI, UAE · GRAPHIC DESIGNER
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 2017 -->
+
+                <div class="experience-preview-row">
+
+                    <span>
+                        2017 — 2022
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            JMD GRAPHICS
+                        </strong>
+
+                        <small>
+                            DELHI, INDIA · GRAPHIC DESIGNER &
+                            PRINTING MACHINE OPERATOR
+                        </small>
+
+                    </div>
+
+                </div>
+
+
             </div>
 
-        </div>
+
+
+            <div class="experience-open">
+
+                <span>
+                    VIEW FULL EXPERIENCE
+                </span>
+
+                <strong>
+                    ↗
+                </strong>
+
+            </div>
+
+
+        </article>
+
 
     </div>
 
@@ -1097,230 +1487,257 @@
 
 
 
-<!-- =====================================================
-     FULL PORTFOLIO PDF
-
-     IMPORTANT:
-     Apni PDF file ko "portfolio.pdf" naam se
-     AJAY.HTML KE SAME FOLDER mein rakhna.
-
-     Folder:
-
-     ajayPP/
-     ├── ajay.html
-     ├── style.css
-     ├── script.js
-     ├── portfolio.pdf
-     └── images/
-
-===================================================== -->
+<!-- =========================================================
+     WORK & RESUME
+========================================================= -->
 
 <section
-    class="full-portfolio-section section"
-    id="full-portfolio"
+    class="documents section"
+    id="documents"
 >
+
 
     <div class="container">
 
 
         <div class="section-label reveal">
-            FULL PORTFOLIO
+            MY WORK & RESUME
         </div>
 
 
-        <div class="portfolio-pdf-content reveal">
+        <div class="documents-grid">
 
 
-            <div class="portfolio-pdf-text">
+            <!-- PORTFOLIO -->
+
+            <article
+                class="document-card document-primary glass-card reveal"
+            >
 
                 <span>
                     COMPLETE WORK COLLECTION
                 </span>
 
+
                 <h2>
-
-                    Want to see
-                    <strong>everything?</strong>
-
+                    FULL
+                    <strong>
+                        PORTFOLIO
+                    </strong>
                 </h2>
+
 
                 <p>
 
-                    View the complete portfolio PDF to explore
-                    more graphic design, advertising, packaging,
-                    branding and print-related work.
+                    Explore the complete portfolio
+                    including graphic design,
+                    advertising, packaging,
+                    branding and print work.
 
                 </p>
 
-            </div>
+
+                <div class="document-actions">
+
+                    <a
+                        href="portfolio.pdf"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        VIEW FULL PORTFOLIO ↗
+                    </a>
+
+
+                    <a
+                        href="portfolio.pdf"
+                        download
+                    >
+                        DOWNLOAD PORTFOLIO
+                    </a>
+
+                </div>
+
+            </article>
 
 
 
-            <div class="portfolio-pdf-actions">
+            <!-- RESUME -->
+
+            <article
+                class="document-card glass-card reveal"
+            >
+
+                <span>
+                    PROFESSIONAL PROFILE
+                </span>
 
 
-                <!-- =================================================
-                     VIEW PDF
-                     
-                     PDF ka naam change karoge to yahan bhi change
-                     karna hoga.
-                ================================================== -->
-
-                <a
-                    href="portfolio.pdf"
-                    target="_blank"
-                    rel="noopener"
-                    class="pdf-primary"
-                >
-
-                    VIEW FULL PORTFOLIO
-
-                    <span>
-                        ↗
-                    </span>
-
-                </a>
+                <h2>
+                    RESUME
+                </h2>
 
 
+                <p>
 
-                <!-- =================================================
-                     DOWNLOAD PDF
-                ================================================== -->
+                    Professional experience,
+                    design skills, production
+                    knowledge and machine
+                    experience.
 
-                <a
-                    href="portfolio.pdf"
-                    download
-                    class="pdf-secondary"
-                >
-
-                    DOWNLOAD PDF
-
-                </a>
+                </p>
 
 
-            </div>
+                <div class="document-actions">
+
+                    <a
+                        href="ajay_resume.pdf"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        VIEW RESUME ↗
+                    </a>
+
+
+                    <a
+                        href="ajay_resume.pdf"
+                        download
+                    >
+                        DOWNLOAD RESUME
+                    </a>
+
+                </div>
+
+            </article>
+
 
         </div>
 
     </div>
 
 </section>
-<!-- =====================================================
+
+
+
+<!-- =========================================================
      CONTACT
-===================================================== -->
+========================================================= -->
 
 <section
     class="contact section"
     id="contact"
 >
 
+
     <div class="container">
 
 
-        <div class="section-label">
+        <div class="section-label reveal">
             CONTACT
         </div>
 
 
-        <div class="contact-content reveal">
-
-            <h2>
-
-                Have a project
-                <span>in mind?</span>
-
-            </h2>
+        <div
+            class="contact-card glass-card reveal"
+        >
 
 
-            <p>
+            <div class="contact-main">
 
-                Let's create something
-                worth remembering.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="contact-details">
-
-
-            <!-- =================================================
-                 WHATSAPP - INDIA
-                 
-                 Click karne par WhatsApp open hoga.
-            ================================================== -->
-
-            <a
-                href="https://wa.me/918920070316"
-                target="_blank"
-                rel="noopener"
-            >
 
                 <span>
-                    WHATSAPP / INDIA
+                    LET'S WORK TOGETHER
                 </span>
 
-                +91 89200 70316
 
-            </a>
+                <h2>
+
+                    Have a project
+                    <span>
+                        in mind?
+                    </span>
+
+                </h2>
 
 
+                <p>
+                    Let's create something
+                    worth remembering.
+                </p>
 
-            <!-- =================================================
-                 WHATSAPP - INTERNATIONAL
-            ================================================== -->
 
-            <a
-                href="https://wa.me/966570682315"
-                target="_blank"
-                rel="noopener"
-            >
-
-                <span>
-                    WHATSAPP / INTERNATIONAL
-                </span>
-
-                +966 57068 2315
-
-            </a>
+            </div>
 
 
 
-            <!-- =================================================
-                 GMAIL
-                 
-                 Click karne par Gmail compose window open hogi.
-            ================================================== -->
-
-            <a
-    href="https://mail.google.com/mail/?view=cm&fs=1&to=ajaykushwaha8040@gmail.com"
-    target="_blank"
-    rel="noopener"
->
-
-    <span>
-        EMAIL
-    </span>
-
-    ajaykushwaha8040@gmail.com
-
-</a>
+            <div class="contact-links">
 
 
+                <!-- WHATSAPP INDIA -->
 
-            <!-- =================================================
-                 LOCATION
-            ================================================== -->
+                <a
+                    href="https://wa.me/918920070316"
+                    target="_blank"
+                    rel="noopener"
+                >
 
-            <div>
+                    <span>
+                        WHATSAPP / INDIA
+                    </span>
 
-                <span>
-                    LOCATION
-                </span>
+                    +91 89200 70316
 
-                Siwan, Bihar, India
+                </a>
+
+
+
+                <!-- WHATSAPP INTERNATIONAL -->
+
+                <a
+                    href="https://wa.me/966570682315"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    <span>
+                        WHATSAPP / INTERNATIONAL
+                    </span>
+
+                    +966 57068 2315
+
+                </a>
+
+
+
+                <!-- EMAIL -->
+
+                <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=ajaykushwaha8040@gmail.com"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    <span>
+                        EMAIL
+                    </span>
+
+                    ajaykushwaha8040@gmail.com
+
+                </a>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="contact-location">
+
+                    <span>
+                        BASED IN
+                    </span>
+
+                    SIWAN, BIHAR, INDIA
+
+                </div>
+
 
             </div>
 
@@ -1333,21 +1750,33 @@
 
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+</main>
 
-<footer>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
 
     <div class="container footer-inner">
 
-        <span>
-            © 2026 Ajay Kushwaha
-        </span>
 
         <span>
-            Graphic Designer
+            AJAY KUSHWAHA
         </span>
+
+
+        <span>
+            GRAPHIC DESIGN / PRINT PRODUCTION
+        </span>
+
+
+        <span>
+            © 2026
+        </span>
+
 
     </div>
 
@@ -1355,40 +1784,24 @@
 
 
 
-<!-- =====================================================
-     UNIVERSAL FLOATING MODAL
+<!-- =========================================================
+     UNIVERSAL DETAIL MODAL
 
-     Ye ek hi modal:
+     Used for:
      - Projects
      - Services
      - Experience
-
-     tino ke liye use hoga.
-===================================================== -->
+========================================================= -->
 
 <div
-    class="modal"
-    id="universalModal"
+    class="detail-modal"
+    id="detailModal"
     aria-hidden="true"
 >
 
 
-    <!-- =================================================
-         BLURRED BACKGROUND
+    <div class="modal-backdrop"></div>
 
-         Bahar click karne par modal close hoga.
-    ================================================== -->
-
-    <div
-        class="modal-backdrop"
-        id="modalBackdrop"
-    ></div>
-
-
-
-    <!-- =================================================
-         MODAL WINDOW
-    ================================================== -->
 
     <div
         class="modal-window"
@@ -1398,124 +1811,65 @@
     >
 
 
-        <!-- =================================================
-             CLOSE BUTTON
-        ================================================== -->
-
         <button
             class="modal-close"
             id="modalClose"
             type="button"
             aria-label="Close"
         >
-
             ×
-
         </button>
 
 
 
-        <!-- =================================================
-             MODAL CONTENT
-             
-             JavaScript yahan content insert karega.
-        ================================================== -->
+        <!-- IMAGE
+
+             Project/service can use this.
+             Experience intentionally has no image.
+        -->
 
         <div
-            class="modal-content"
-            id="modalContent"
+            class="modal-image image-slot"
+            id="modalImage"
         >
-
-
-            <!-- =================================================
-                 MODAL HEADER
-            ================================================== -->
-
-            <div class="modal-header">
-
-                <span
-                    class="modal-category"
-                    id="modalCategory"
-                >
-                    PROJECT
-                </span>
-
-                <span
-                    class="modal-number"
-                    id="modalNumber"
-                >
-                    01
-                </span>
-
-            </div>
+        </div>
 
 
 
-            <!-- =================================================
-                 MODAL TITLE
-            ================================================== -->
+        <div class="modal-content">
+
+
+            <span
+                class="modal-kicker"
+                id="modalKicker"
+            >
+            </span>
+
 
             <h2 id="modalTitle">
-                Project Title
             </h2>
 
 
+            <p id="modalDescription">
+            </p>
 
-            <!-- =================================================
-                 MODAL IMAGE
-                 
-                 JavaScript image path load karega.
-            ================================================== -->
 
-            <div class="modal-image-wrap">
-
-                <img
-                    src=""
-                    alt=""
-                    id="modalImage"
-                    class="modal-image"
-                >
-
-                <div
-                    class="modal-image-placeholder"
-                    id="modalImagePlaceholder"
-                >
-                    IMAGE PREVIEW
-                </div>
-
+            <div
+                class="modal-meta"
+                id="modalMeta"
+            >
             </div>
 
-
-
-            <!-- =================================================
-                 MODAL DESCRIPTION
-            ================================================== -->
-
-            <div class="modal-description">
-
-                <p id="modalDescription">
-                    Project description will appear here.
-                </p>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 MODAL DETAILS
-            ================================================== -->
 
             <div
                 class="modal-details"
                 id="modalDetails"
             >
-
-                <!-- JavaScript details add karega -->
-
             </div>
 
 
         </div>
+
 
     </div>
 
@@ -1523,9 +1877,9 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      BACK TO TOP
-===================================================== -->
+========================================================= -->
 
 <button
     class="back-to-top"
@@ -1533,29 +1887,14 @@
     type="button"
     aria-label="Back to top"
 >
-
     ↑
-
 </button>
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      JAVASCRIPT
-     
-     IMPORTANT:
-     script.js isi HTML file ke same folder mein hona chahiye.
-
-     Folder:
-
-     ajayPP/
-     ├── ajay.html
-     ├── style.css
-     ├── script.js
-     ├── portfolio.pdf
-     └── images/
-
-===================================================== -->
+========================================================= -->
 
 <script src="script.js"></script>
 

@@ -1,73 +1,49 @@
 /* =========================================================
-   AJAY KUSHWAHA PORTFOLIO
-   script.js
+   AJAY KUSHWHA — V2
+   MAIN JAVASCRIPT
 ========================================================= */
 
 
 /* =========================================================
-   01. BASIC HELPERS
+   01. DOM HELPERS
 ========================================================= */
 
-const body = document.body;
+const $ = (selector, parent = document) =>
+    parent.querySelector(selector);
+
+const $$ = (selector, parent = document) =>
+    [...parent.querySelectorAll(selector)];
 
 
 /* =========================================================
-   02. THEME TOGGLE
+   02. THEME
 ========================================================= */
 
-const themeToggle = document.getElementById("themeToggle");
+const themeToggle = $("#themeToggle");
 
-
-/*
-    Theme ko browser mein save karne ke liye
-    localStorage use kar rahe hain.
-*/
-
-const savedTheme = localStorage.getItem("ajay-theme");
-
-
-/*
-    Agar pehle Light Theme select kiya tha
-    to website Light Theme mein open hogi.
-*/
+const savedTheme =
+    localStorage.getItem("ajay-theme");
 
 if (savedTheme === "light") {
-
-    body.classList.add("light-theme");
-
+    document.body.classList.add("light-theme");
 }
 
-
-/*
-    Theme button click
-*/
 
 if (themeToggle) {
 
     themeToggle.addEventListener("click", () => {
 
-        body.classList.toggle("light-theme");
+        document.body.classList.toggle("light-theme");
 
+        const theme =
+            document.body.classList.contains("light-theme")
+                ? "light"
+                : "dark";
 
-        /*
-            Theme save karo
-        */
-
-        if (body.classList.contains("light-theme")) {
-
-            localStorage.setItem(
-                "ajay-theme",
-                "light"
-            );
-
-        } else {
-
-            localStorage.setItem(
-                "ajay-theme",
-                "dark"
-            );
-
-        }
+        localStorage.setItem(
+            "ajay-theme",
+            theme
+        );
 
     });
 
@@ -75,31 +51,102 @@ if (themeToggle) {
 
 
 /* =========================================================
-   03. NAVBAR SCROLL EFFECT
+   03. LOADER
 ========================================================= */
 
-const navbar = document.getElementById("navbar");
+const loader = $("#loader");
+const loaderCounter = $("#loaderCounter");
+const loaderProgress = $("#loaderProgress");
+const loaderName = $("#loaderName");
 
+let loaderStart =
+    performance.now();
 
-function updateNavbar() {
+const loaderDuration = 1250;
 
-    if (!navbar) {
+function runLoader(time) {
+
+    if (!loaderCounter || !loaderProgress) {
+        return;
+    }
+
+    const elapsed =
+        time - loaderStart;
+
+    const progress =
+        Math.min(
+            elapsed / loaderDuration,
+            1
+        );
+
+    const value =
+        Math.floor(progress * 100);
+
+    loaderCounter.textContent =
+        value;
+
+    loaderProgress.style.width =
+        `${value}%`;
+
+    if (progress < 1) {
+
+        requestAnimationFrame(
+            runLoader
+        );
+
         return;
     }
 
 
-    if (window.scrollY > 40) {
+    if (loaderName) {
 
-        navbar.classList.add("scrolled");
-
-    } else {
-
-        navbar.classList.remove("scrolled");
+        loaderName.classList.add(
+            "is-visible"
+        );
 
     }
 
+
+    setTimeout(() => {
+
+        if (!loader) return;
+
+        loader.classList.add(
+            "is-hidden"
+        );
+
+        document.body.classList.add(
+            "page-ready"
+        );
+
+    }, 250);
+
 }
 
+
+requestAnimationFrame(
+    runLoader
+);
+
+
+/* =========================================================
+   04. NAVBAR SCROLL STATE
+========================================================= */
+
+const navbar = $("#navbar");
+
+function updateNavbar() {
+
+    if (!navbar) return;
+
+    navbar.classList.toggle(
+        "is-scrolled",
+        window.scrollY > 30
+    );
+
+}
+
+updateNavbar();
 
 window.addEventListener(
     "scroll",
@@ -108,51 +155,36 @@ window.addEventListener(
 );
 
 
-updateNavbar();
-
-
 /* =========================================================
-   04. SCROLL PROGRESS
+   05. SCROLL PROGRESS
 ========================================================= */
 
 const scrollProgress =
-    document.getElementById("scrollProgress");
-
+    $("#scrollProgress");
 
 function updateScrollProgress() {
 
-    if (!scrollProgress) {
-        return;
-    }
-
-
-    const scrollTop =
-        window.scrollY;
-
+    if (!scrollProgress) return;
 
     const documentHeight =
         document.documentElement.scrollHeight
         - window.innerHeight;
 
-
     if (documentHeight <= 0) {
 
-        scrollProgress.style.width = "0%";
+        scrollProgress.style.width =
+            "0%";
 
         return;
-
     }
 
-
     const progress =
-        (scrollTop / documentHeight) * 100;
-
+        (window.scrollY / documentHeight) * 100;
 
     scrollProgress.style.width =
-        `${progress}%`;
+        `${Math.min(progress, 100)}%`;
 
 }
-
 
 window.addEventListener(
     "scroll",
@@ -160,1461 +192,178 @@ window.addEventListener(
     { passive: true }
 );
 
-
 window.addEventListener(
     "resize",
     updateScrollProgress
 );
 
-
 updateScrollProgress();
 
 
 /* =========================================================
-   05. MOBILE MENU
+   06. MOBILE MENU
 ========================================================= */
 
 const menuButton =
-    document.getElementById("menuButton");
-
+    $("#menuButton");
 
 const mobileMenu =
-    document.getElementById("mobileMenu");
+    $("#mobileMenu");
+
+
+function closeMobileMenu() {
+
+    if (!menuButton || !mobileMenu) {
+        return;
+    }
+
+    menuButton.classList.remove(
+        "is-active"
+    );
+
+    mobileMenu.classList.remove(
+        "is-open"
+    );
+
+}
 
 
 if (menuButton && mobileMenu) {
-
 
     menuButton.addEventListener(
         "click",
         () => {
 
-            menuButton.classList.toggle("active");
+            menuButton.classList.toggle(
+                "is-active"
+            );
 
-            mobileMenu.classList.toggle("active");
-
-
-            const isOpen =
-                mobileMenu.classList.contains("active");
-
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                isOpen ? "true" : "false"
+            mobileMenu.classList.toggle(
+                "is-open"
             );
 
         }
     );
 
 
-    /*
-        Mobile menu ka link click hone ke baad
-        menu automatically close ho jayega.
-    */
+    $$(".mobile-menu a")
+        .forEach(link => {
 
-    const mobileLinks =
-        mobileMenu.querySelectorAll("a");
+            link.addEventListener(
+                "click",
+                closeMobileMenu
+            );
 
-
-    mobileLinks.forEach((link) => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                mobileMenu.classList.remove(
-                    "active"
-                );
-
-                menuButton.classList.remove(
-                    "active"
-                );
-
-                menuButton.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-        );
-
-    });
+        });
 
 }
 
 
 /* =========================================================
-   06. REVEAL ANIMATION
+   07. REVEAL ON SCROLL
 ========================================================= */
 
 const revealElements =
-    document.querySelectorAll(".reveal");
+    $$(".reveal");
 
+const revealObserver =
+    new IntersectionObserver(
+        (entries, observer) => {
 
-/*
-    IntersectionObserver ke through
-    section screen par aane par animation chalega.
-*/
+            entries.forEach(entry => {
 
-if (
-    "IntersectionObserver" in window
-) {
+                if (!entry.isIntersecting) {
+                    return;
+                }
 
-    const revealObserver =
-        new IntersectionObserver(
-            (entries, observer) => {
+                entry.target.classList.add(
+                    "is-visible"
+                );
 
-                entries.forEach((entry) => {
+                observer.unobserve(
+                    entry.target
+                );
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+            });
 
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-
-                        /*
-                            Ek baar animation hone ke baad
-                            dobara observe karne ki zaroorat nahi.
-                        */
-
-                        observer.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-
-    revealElements.forEach(
-        (element) => {
-
-            revealObserver.observe(
-                element
-            );
-
-        }
-    );
-
-} else {
-
-
-    /*
-        Old browsers ke liye fallback.
-    */
-
-    revealElements.forEach(
-        (element) => {
-
-            element.classList.add(
-                "visible"
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   07. PROJECT DATA
-========================================================= */
-
-
-/*
-    IMPORTANT:
-
-    YAHAN SE FUTURE MEIN PROJECT IMAGE CHANGE KARNA HAI.
-
-    Example:
-
-    image: "images/project-01.jpg"
-
-    Folder structure:
-
-    ajayPP/
-    |
-    |-- ajay.html
-    |-- style.css
-    |-- script.js
-    |
-    |-- images/
-         |
-         |-- project-01.jpg
-         |-- project-02.jpg
-         |-- project-03.jpg
-         |-- project-04.jpg
-
-
-    Agar image ka naam kuch aur hai,
-    sirf image wali line change karna.
-*/
-
-
-const projectData = {
-
-
-    /* =====================================================
-       PROJECT 01
-    ===================================================== */
-
-    project1: {
-
-        number: "01",
-
-        category: "GRAPHIC DESIGN",
-
-        title: "Visual Campaign",
-
-
-        /*
-            IMAGE PATH
-            -----------------------------------------------
-            Future mein yahan image add karna.
-
-            Example:
-            image: "images/project-01.jpg",
-        */
-
-        image: "images/project-01-visual-campaign.jpg",
-
-
-        description:
-            "A visual design project focused on creating clear, engaging and production-ready artwork for promotional communication.",
-
-
-        details: [
-
-            {
-                label: "CATEGORY",
-                value: "Graphic Design"
-            },
-
-            {
-                label: "WORK",
-                value: "Visual Campaign"
-            },
-
-            {
-                label: "PROCESS",
-                value: "Design & Production"
-            }
-
-        ]
-
-    },
-
-
-    /* =====================================================
-       PROJECT 02
-    ===================================================== */
-
-    project2: {
-
-        number: "02",
-
-        category: "ADVERTISING",
-
-        title: "Product Design",
-
-
-        /*
-            IMAGE PATH
-        */
-
-        image: "images/project-02-product-advertising.jpg",
-
-
-        description:
-            "Product-focused advertising artwork designed to present visual information in a clear and attractive format.",
-
-
-        details: [
-
-            {
-                label: "CATEGORY",
-                value: "Advertising"
-            },
-
-            {
-                label: "WORK",
-                value: "Product Advertising"
-            },
-
-            {
-                label: "PROCESS",
-                value: "Design & Print"
-            }
-
-        ]
-
-    },
-
-
-    /* =====================================================
-       PROJECT 03
-    ===================================================== */
-
-    project3: {
-
-        number: "03",
-
-        category: "PACKAGING",
-
-        title: "Packaging Design",
-
-
-        /*
-            IMAGE PATH
-        */
-
-        image: "images/project-03-packaging-design.jpg",
-
-
-        description:
-            "Packaging and product artwork prepared with attention to visual presentation, layout and print requirements.",
-
-
-        details: [
-
-            {
-                label: "CATEGORY",
-                value: "Packaging"
-            },
-
-            {
-                label: "WORK",
-                value: "Packaging Design"
-            },
-
-            {
-                label: "PROCESS",
-                value: "Artwork & Print"
-            }
-
-        ]
-
-    },
-
-
-    /* =====================================================
-       PROJECT 04
-    ===================================================== */
-
-    project4: {
-
-        number: "04",
-
-        category: "PRINT",
-
-        title: "Print Production",
-
-
-        /*
-            IMAGE PATH
-        */
-
-        image: "images/project-04-print-production.jpg",
-
-
-        description:
-            "Print production work involving artwork preparation, digital printing and production-focused execution.",
-
-
-        details: [
-
-            {
-                label: "CATEGORY",
-                value: "Print Production"
-            },
-
-            {
-                label: "WORK",
-                value: "Digital & UV Print"
-            },
-
-            {
-                label: "PROCESS",
-                value: "Production"
-            }
-
-        ]
-
-    }
-
-};
-
-
-/* =========================================================
-   08. SERVICE DATA
-========================================================= */
-
-const serviceData = {
-
-
-    /* =====================================================
-       GRAPHIC DESIGN
-    ===================================================== */
-
-    graphic: {
-
-        number: "01",
-
-        category: "SERVICE",
-
-        title: "Graphic Design",
-
-
-        /*
-            Service ke liye image optional hai.
-
-            Future mein image lagani ho to:
-
-            image: "images/service-graphic.jpg"
-        */
-
-        image:
-    "images/service-graphic-design.jpg",
-
-
-        description:
-            "Creative visual design for marketing, advertising and brand communication. Artwork can be prepared according to the final print or digital requirement.",
-
-
-        details: [
-
-            {
-                label: "SERVICE",
-                value: "Graphic Design"
-            },
-
-            {
-                label: "FOCUS",
-                value: "Visual Communication"
-            },
-
-            {
-                label: "OUTPUT",
-                value: "Print & Digital"
-            }
-
-        ]
-
-    },
-
-
-    /* =====================================================
-       DIGITAL PRINTING
-    ===================================================== */
-
-    digital: {
-
-        number: "02",
-
-        category: "SERVICE",
-
-        title: "Digital Printing",
-
-        image:
-    "images/service-digital-printing.jpg",
-
-        description:
-            "Digital printing work including artwork preparation and regular production operations with attention to accuracy and quality.",
-
-        details: [
-
-            {
-                label: "SERVICE",
-                value: "Digital Printing"
-            },
-
-            {
-                label: "FOCUS",
-                value: "Print Production"
-            },
-
-            {
-                label: "PROCESS",
-                value: "Design to Print"
-            }
-
-        ]
-
-    },
-
-
-    /* =====================================================
-       UV PRINTING
-    ===================================================== */
-
-    uv: {
-
-        number: "03",
-
-        category: "SERVICE",
-
-        title: "UV Printing",
-
-        image:
-    "images/service-uv-printing.jpg",
-
-        description:
-            "UV printing machine operation and print preparation for production work.",
-
-        details: [
-
-            {
-                label: "SERVICE",
-                value: "UV Printing"
-            },
-
-            {
-                label: "FOCUS",
-                value: "UV Print"
-            },
-
-            {
-                label: "PROCESS",
-                value: "Production"
-            }
-
-        ]
-
-    },
-
-
-    /* =====================================================
-       PRINT PREPARATION
-    ===================================================== */
-
-    preparation: {
-
-        number: "04",
-
-        category: "SERVICE",
-
-        title: "Print Preparation",
-
-        image:
-    "images/service-print-preparation.jpg",
-
-        description:
-            "Preparing artwork and files for accurate production while keeping layouts, sizing and final output requirements in mind.",
-
-        details: [
-
-            {
-                label: "SERVICE",
-                value: "Print Preparation"
-            },
-
-            {
-                label: "FOCUS",
-                value: "Artwork Setup"
-            },
-
-            {
-                label: "OUTPUT",
-                value: "Production Ready"
-            }
-
-        ]
-
-    }
-
-};
-
-
-/* =========================================================
-   09. EXPERIENCE DATA
-========================================================= */
-
-const experienceData = {
-
-    main: {
-
-        number: "01",
-
-        category:
-            "GRAPHIC DESIGN & PRINT PRODUCTION",
-
-        title:
-            "Graphic Designer & Printing Machine Operator",
-
-        image:
-            "images/experience-ajay-kushwaha.png",
-
-        description:
-            "Graphic Designer and Printing Machine Operator with 7+ years of experience across graphic design, digital printing and UV printing. Experienced in artwork preparation, print production, machine operation and quality checking.",
-
-        details: [
-
-            {
-                label: "CURRENT ROLE",
-                value:
-                    "Graphic Designer — Signwork, Saudi Arabia"
-            },
-
-            {
-                label: "2022 — 2023",
-                value:
-                    "Graphic Designer — Signwork, Dubai, UAE"
-            },
-
-            {
-                label: "2017 — 2022",
-                value:
-                    "Graphic Designer & Printing Machine Operator — JMD Graphics, Delhi"
-            },
-
-            {
-                label: "SPECIALIZATION",
-                value:
-                    "Digital & UV Printing"
-            },
-
-            {
-                label: "DESIGN TOOLS",
-                value:
-                    "Illustrator, Photoshop, CorelDRAW, Acrobat"
-            },
-
-            {
-                label: "MACHINE EXPERIENCE",
-                value:
-                    "Flatbed, UV Roll to Roll, Epson, HP, Roland, Mimaki"
-            },
-
-            {
-                label: "PRODUCTION",
-                value:
-                    "Artwork Preparation, Print Setup & Quality Control"
-            },
-
-            {
-                label: "CORE WORK",
-                value:
-                    "Graphic Design, Print Production & Visual Design"
-            }
-
-        ]
-
-    }
-
-};
-
-/* =========================================================
-   10. UNIVERSAL MODAL
-========================================================= */
-
-const modal =
-    document.getElementById(
-        "universalModal"
-    );
-
-
-const modalBackdrop =
-    document.getElementById(
-        "modalBackdrop"
-    );
-
-
-const modalClose =
-    document.getElementById(
-        "modalClose"
-    );
-
-
-const modalCategory =
-    document.getElementById(
-        "modalCategory"
-    );
-
-
-const modalNumber =
-    document.getElementById(
-        "modalNumber"
-    );
-
-
-const modalTitle =
-    document.getElementById(
-        "modalTitle"
-    );
-
-
-const modalImage =
-    document.getElementById(
-        "modalImage"
-    );
-
-
-const modalImagePlaceholder =
-    document.getElementById(
-        "modalImagePlaceholder"
-    );
-
-
-const modalDescription =
-    document.getElementById(
-        "modalDescription"
-    );
-
-
-const modalDetails =
-    document.getElementById(
-        "modalDetails"
-    );
-
-
-/*
-    Last focused element save karenge,
-    taaki modal close hone par focus wapas
-    wahi aa sake.
-*/
-
-let lastFocusedElement = null;
-
-
-/* =========================================================
-   11. MODAL IMAGE HANDLER
-========================================================= */
-
-function loadModalImage(imagePath, altText) {
-
-
-    if (
-        !modalImage ||
-        !modalImagePlaceholder
-    ) {
-
-        return;
-
-    }
-
-
-    /*
-        Pehle old image reset.
-    */
-
-    modalImage.classList.remove(
-        "loaded"
-    );
-
-    modalImage.removeAttribute(
-        "src"
-    );
-
-    modalImage.alt = "";
-
-
-    modalImagePlaceholder.style.display =
-        "grid";
-
-
-    /*
-        Agar image path available hai,
-        image load karo.
-    */
-
-    if (
-        imagePath &&
-        typeof imagePath === "string"
-    ) {
-
-        modalImage.onload = () => {
-
-            modalImage.classList.add(
-                "loaded"
-            );
-
-            modalImagePlaceholder.style.display =
-                "none";
-
-        };
-
-
-        modalImage.onerror = () => {
-
-            modalImage.classList.remove(
-                "loaded"
-            );
-
-            modalImagePlaceholder.style.display =
-                "grid";
-
-        };
-
-
-        modalImage.src = imagePath;
-
-        modalImage.alt =
-            altText || "Portfolio image";
-
-    }
-
-}
-
-
-/* =========================================================
-   12. MODAL DETAILS BUILDER
-========================================================= */
-
-function renderModalDetails(details) {
-
-
-    if (!modalDetails) {
-        return;
-    }
-
-
-    modalDetails.innerHTML = "";
-
-
-    if (
-        !Array.isArray(details)
-    ) {
-
-        return;
-
-    }
-
-
-    details.forEach((detail) => {
-
-
-        const item =
-            document.createElement("div");
-
-
-        item.className =
-            "modal-detail";
-
-
-        const label =
-            document.createElement("span");
-
-
-        label.textContent =
-            detail.label || "";
-
-
-        const value =
-            document.createElement("strong");
-
-
-        value.textContent =
-            detail.value || "";
-
-
-        item.appendChild(label);
-
-        item.appendChild(value);
-
-
-        modalDetails.appendChild(item);
-
-    });
-
-}
-
-
-/* =========================================================
-   13. OPEN MODAL
-========================================================= */
-
-function openModal(data) {
-
-
-    if (
-        !modal ||
-        !data
-    ) {
-
-        return;
-
-    }
-
-
-    /*
-        Current focused element remember karo.
-    */
-
-    lastFocusedElement =
-        document.activeElement;
-
-
-    /*
-        Category
-    */
-
-    if (modalCategory) {
-
-        modalCategory.textContent =
-            data.category || "";
-
-    }
-
-
-    /*
-        Number
-    */
-
-    if (modalNumber) {
-
-        modalNumber.textContent =
-            data.number || "";
-
-    }
-
-
-    /*
-        Title
-    */
-
-    if (modalTitle) {
-
-        modalTitle.textContent =
-            data.title || "";
-
-    }
-
-
-    /*
-        Description
-    */
-
-    if (modalDescription) {
-
-        modalDescription.textContent =
-            data.description || "";
-
-    }
-
-
-    /*
-        Image
-    */
-
-    loadModalImage(
-        data.image,
-        data.title
-    );
-
-
-    /*
-        Details
-    */
-
-    renderModalDetails(
-        data.details
-    );
-
-
-    /*
-        Modal open
-    */
-
-    modal.classList.add(
-        "active"
-    );
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-
-    body.classList.add(
-        "modal-open"
-    );
-
-
-    /*
-        Close button ko focus karo.
-    */
-
-    if (modalClose) {
-
-        setTimeout(() => {
-
-            modalClose.focus();
-
-        }, 50);
-
-    }
-
-}
-
-
-/* =========================================================
-   14. CLOSE MODAL
-========================================================= */
-
-function closeModal() {
-
-
-    if (!modal) {
-        return;
-    }
-
-
-    modal.classList.remove(
-        "active"
-    );
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-
-    body.classList.remove(
-        "modal-open"
-    );
-
-
-    /*
-        Modal image reset
-    */
-
-    if (modalImage) {
-
-        modalImage.classList.remove(
-            "loaded"
-        );
-
-    }
-
-
-    /*
-        Focus previous element par wapas.
-    */
-
-    if (
-        lastFocusedElement &&
-        typeof lastFocusedElement.focus === "function"
-    ) {
-
-        lastFocusedElement.focus();
-
-    }
-
-
-    lastFocusedElement = null;
-
-}
-
-
-/* =========================================================
-   15. PROJECT MODAL
-========================================================= */
-
-const projectCards =
-    document.querySelectorAll(
-        "[data-project]"
-    );
-
-
-projectCards.forEach((card) => {
-
-
-    const projectId =
-        card.dataset.project;
-
-
-    card.addEventListener(
-        "click",
-        () => {
-
-            const project =
-                projectData[projectId];
-
-
-            openModal(project);
-
+        },
+        {
+            threshold: 0.12,
+            rootMargin:
+                "0px 0px -40px 0px"
         }
     );
 
 
-    /*
-        Keyboard support:
-        Enter / Space se project open hoga.
-    */
-
-    card.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                event.key === "Enter" ||
-                event.key === " "
-            ) {
-
-                event.preventDefault();
-
-                const project =
-                    projectData[projectId];
-
-                openModal(project);
-
-            }
-
-        }
-    );
-
-});
-
-
-/* =========================================================
-   16. SERVICE MODAL
-========================================================= */
-
-const serviceItems =
-    document.querySelectorAll(
-        "[data-service]"
-    );
-
-
-serviceItems.forEach((item) => {
-
-
-    const serviceId =
-        item.dataset.service;
-
-
-    item.addEventListener(
-        "click",
-        () => {
-
-            const service =
-                serviceData[serviceId];
-
-
-            openModal(service);
-
-        }
-    );
-
-
-    /*
-        Keyboard support
-    */
-
-    item.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                event.key === "Enter" ||
-                event.key === " "
-            ) {
-
-                event.preventDefault();
-
-                const service =
-                    serviceData[serviceId];
-
-                openModal(service);
-
-            }
-
-        }
-    );
-
-});
-
-
-/* =========================================================
-   17. EXPERIENCE MODAL
-========================================================= */
-
-const experienceCards =
-    document.querySelectorAll(
-        "[data-experience]"
-    );
-
-
-experienceCards.forEach((card) => {
-
-
-    const experienceId =
-        card.dataset.experience;
-
-
-    card.addEventListener(
-        "click",
-        () => {
-
-            const experience =
-                experienceData[experienceId];
-
-
-            openModal(experience);
-
-        }
-    );
-
-
-    /*
-        Keyboard support
-    */
-
-    card.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                event.key === "Enter" ||
-                event.key === " "
-            ) {
-
-                event.preventDefault();
-
-                const experience =
-                    experienceData[experienceId];
-
-                openModal(experience);
-
-            }
-
-        }
-    );
-
-});
-
-
-/* =========================================================
-   18. MODAL CLOSE BUTTON
-========================================================= */
-
-if (modalClose) {
-
-    modalClose.addEventListener(
-        "click",
-        closeModal
-    );
-
-}
-
-
-/* =========================================================
-   19. CLOSE MODAL BY BACKDROP
-========================================================= */
-
-if (modalBackdrop) {
-
-    modalBackdrop.addEventListener(
-        "click",
-        closeModal
-    );
-
-}
-
-
-/* =========================================================
-   20. ESC KEY
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            event.key === "Escape" &&
-            modal &&
-            modal.classList.contains("active")
-        ) {
-
-            closeModal();
-
-        }
-
-    }
+revealElements.forEach(
+    element =>
+        revealObserver.observe(element)
 );
 
 
 /* =========================================================
-   21. LOAD PROJECT CARD IMAGES
+   08. EXPERIENCE IN NUMBERS
+   TRIGGER WHEN NUMBERS ENTER VIEW
 ========================================================= */
 
+const counterElements =
+    $$(".counter");
 
-/*
-    IMPORTANT:
+const counterObserver =
+    new IntersectionObserver(
+        (entries, observer) => {
 
-    Project images ka main control yahi hai.
+            entries.forEach(entry => {
 
-    Example:
+                if (!entry.isIntersecting) {
+                    return;
+                }
 
-    project1:
-    image: "images/project-01.jpg"
+                animateCounter(
+                    entry.target
+                );
 
-    project2:
-    image: "images/project-02.jpg"
+                observer.unobserve(
+                    entry.target
+                );
 
-    project3:
-    image: "images/project-03.jpg"
+            });
 
-    project4:
-    image: "images/project-04.jpg"
-*/
-
-
-projectCards.forEach((card) => {
-
-
-    const projectId =
-        card.dataset.project;
-
-
-    const project =
-        projectData[projectId];
-
-
-    if (
-        !project ||
-        !project.image
-    ) {
-
-        return;
-
-    }
-
-
-    const image =
-        card.querySelector(
-            ".work-card-image"
-        );
-
-
-    if (!image) {
-        return;
-    }
-
-
-    image.onload = () => {
-
-        image.classList.add(
-            "loaded"
-        );
-
-    };
-
-
-    image.onerror = () => {
-
-        image.classList.remove(
-            "loaded"
-        );
-
-    };
-
-
-    image.src =
-        project.image;
-
-
-    image.alt =
-        project.title || "Portfolio project";
-
-});
-
-
-/* =========================================================
-   22. EXPERIENCE IMAGE SUPPORT
-========================================================= */
-
-experienceCards.forEach((card) => {
-
-
-    const experienceId =
-        card.dataset.experience;
-
-
-    const experience =
-        experienceData[experienceId];
-
-
-    /*
-        Current experience card mein image
-        nahi hai, isliye future ke liye
-        data ready rakha gaya hai.
-    */
-
-    if (
-        !experience ||
-        !experience.image
-    ) {
-
-        return;
-
-    }
-
-});
-
-
-/* =========================================================
-   23. EXPERIENCE IN NUMBERS
-========================================================= */
-
-
-/*
-    Numbers HTML mein defined hain:
-
-    data-target="7"
-    data-target="29"
-    data-target="20"
-
-    Future mein number change karna ho to
-    HTML mein data-target change karna.
-*/
-
-
-const counters =
-    document.querySelectorAll(
-        ".counter"
+        },
+        {
+            threshold: 0.45
+        }
     );
 
 
-function animateCounter(counter) {
+counterElements.forEach(
+    counter =>
+        counterObserver.observe(counter)
+);
 
+
+function animateCounter(element) {
 
     const target =
         Number(
-            counter.dataset.target
+            element.dataset.target
         );
 
-
-    if (
-        Number.isNaN(target)
-    ) {
-
+    if (!Number.isFinite(target)) {
         return;
-
     }
 
 
-    const duration = 1600;
+    const duration = 1500;
 
-    const startTime =
+    const start =
         performance.now();
 
 
-    function updateCounter(currentTime) {
-
+    function updateCounter(time) {
 
         const elapsed =
-            currentTime - startTime;
-
+            time - start;
 
         const progress =
             Math.min(
@@ -1624,30 +373,30 @@ function animateCounter(counter) {
 
 
         /*
-            Smooth easing
+            Smooth ease-out
+
+            Fast at beginning,
+            slow near final number.
         */
 
         const eased =
-            1 -
-            Math.pow(
+            1 - Math.pow(
                 1 - progress,
                 3
             );
 
 
-        const currentValue =
+        const current =
             Math.floor(
                 eased * target
             );
 
 
-        counter.textContent =
-            currentValue;
+        element.textContent =
+            current;
 
 
-        if (
-            progress < 1
-        ) {
+        if (progress < 1) {
 
             requestAnimationFrame(
                 updateCounter
@@ -1655,7 +404,7 @@ function animateCounter(counter) {
 
         } else {
 
-            counter.textContent =
+            element.textContent =
                 target;
 
         }
@@ -1670,77 +419,72 @@ function animateCounter(counter) {
 }
 
 
-/*
-    Numbers screen par aane ke baad
-    animation start hogi.
-*/
+/* =========================================================
+   09. WORK — SEE MORE / SEE LESS
+========================================================= */
 
-if (
-    counters.length &&
-    "IntersectionObserver" in window
-) {
+const seeMoreButton =
+    $("#seeMoreWork");
 
-
-    const counterObserver =
-        new IntersectionObserver(
-            (entries, observer) => {
+const hiddenProjects =
+    $$(".project-hidden");
 
 
-                entries.forEach(
-                    (entry) => {
+let workExpanded = false;
 
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+if (seeMoreButton) {
+
+    seeMoreButton.addEventListener(
+        "click",
+        () => {
+
+            workExpanded =
+                !workExpanded;
 
 
-                            animateCounter(
-                                entry.target
-                            );
+            hiddenProjects.forEach(
+                project => {
 
+                    project.classList.toggle(
+                        "is-visible",
+                        workExpanded
+                    );
 
-                            observer.unobserve(
-                                entry.target
-                            );
-
-
-                        }
-
-                    }
-                );
-
-
-            },
-            {
-                threshold: .5
-            }
-        );
-
-
-    counters.forEach(
-        (counter) => {
-
-            counterObserver.observe(
-                counter
+                }
             );
 
-        }
-    );
+
+            seeMoreButton.textContent =
+                workExpanded
+                    ? "SEE LESS WORK"
+                    : "SEE MORE WORK";
 
 
-} else {
+            /*
+                Small scroll adjustment after
+                closing the extra projects.
+            */
 
+            if (!workExpanded) {
 
-    /*
-        Fallback
-    */
+                const workSection =
+                    $("#work");
 
-    counters.forEach(
-        (counter) => {
+                if (workSection) {
 
-            counter.textContent =
-                counter.dataset.target;
+                    setTimeout(() => {
+
+                        workSection.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                    }, 100);
+
+                }
+
+            }
 
         }
     );
@@ -1749,38 +493,1139 @@ if (
 
 
 /* =========================================================
-   24. BACK TO TOP
+   10. PROJECT DATA
+========================================================= */
+
+const projectData = {
+
+
+    "project-1": {
+
+        kicker:
+            "01 / GRAPHIC DESIGN",
+
+        title:
+            "Visual Campaign",
+
+        description:
+            "Creative visual direction, composition, artwork preparation and print-ready output.",
+
+        image:
+            "images/project-01-visual-campaign.jpg",
+
+        details: [
+            {
+                label: "FOCUS",
+                value:
+                    "Visual Communication"
+            },
+            {
+                label: "PROCESS",
+                value:
+                    "Concept to Production"
+            },
+            {
+                label: "OUTPUT",
+                value:
+                    "Print & Digital"
+            }
+        ]
+
+    },
+
+
+    "project-2": {
+
+        kicker:
+            "02 / ADVERTISING",
+
+        title:
+            "Product Advertising",
+
+        description:
+            "Product-focused advertising layouts, visual composition and brand presentation.",
+
+        image:
+            "images/project-02-product-advertising.jpg",
+
+        details: [
+            {
+                label: "FOCUS",
+                value:
+                    "Product Advertising"
+            },
+            {
+                label: "PROCESS",
+                value:
+                    "Layout & Composition"
+            },
+            {
+                label: "OUTPUT",
+                value:
+                    "Campaign Artwork"
+            }
+        ]
+
+    },
+
+
+    "project-3": {
+
+        kicker:
+            "03 / PACKAGING",
+
+        title:
+            "Packaging Design",
+
+        description:
+            "Packaging artwork, visual layout, print preparation and production support.",
+
+        image:
+            "images/project-03-packaging-design.jpg",
+
+        details: [
+            {
+                label: "FOCUS",
+                value:
+                    "Packaging"
+            },
+            {
+                label: "PROCESS",
+                value:
+                    "Artwork Preparation"
+            },
+            {
+                label: "OUTPUT",
+                value:
+                    "Production Ready"
+            }
+        ]
+
+    },
+
+
+    "project-4": {
+
+        kicker:
+            "04 / PRODUCTION",
+
+        title:
+            "Print Production",
+
+        description:
+            "Artwork preparation, print setup, digital and UV production and quality checking.",
+
+        image:
+            "images/project-04-print-production.jpg",
+
+        details: [
+            {
+                label: "FOCUS",
+                value:
+                    "Print Production"
+            },
+            {
+                label: "PROCESS",
+                value:
+                    "Design to Print"
+            },
+            {
+                label: "OUTPUT",
+                value:
+                    "Digital & UV"
+            }
+        ]
+
+    },
+
+
+    "project-5": {
+
+        kicker:
+            "05 / LUXURY / BEAUTY",
+
+        title:
+            "Luxury Beauty Campaign",
+
+        description:
+            "Premium beauty and luxury visual communication.",
+
+        image:
+            "images/featured-01-kilian-campaign.jpg",
+
+        details: [
+            {
+                label: "FOCUS",
+                value:
+                    "Luxury Visuals"
+            },
+            {
+                label: "STYLE",
+                value:
+                    "Premium / Beauty"
+            },
+            {
+                label: "OUTPUT",
+                value:
+                    "Campaign Artwork"
+            }
+        ]
+
+    },
+
+
+    /* =====================================================
+       EXTRA PROJECT 06
+    ===================================================== */
+
+    "project-6": {
+
+        kicker:
+            "06 / CREATIVE WORK",
+
+        title:
+            "Additional Project",
+
+        description:
+            "Additional creative work from the full portfolio.",
+
+        image:
+            "",
+
+        details: [
+            {
+                label: "TYPE",
+                value:
+                    "Creative Work"
+            },
+            {
+                label: "STATUS",
+                value:
+                    "Portfolio Archive"
+            }
+        ]
+
+    },
+
+
+    /* =====================================================
+       EXTRA PROJECT 07
+    ===================================================== */
+
+    "project-7": {
+
+        kicker:
+            "07 / CREATIVE WORK",
+
+        title:
+            "Additional Project",
+
+        description:
+            "Additional creative work from the full portfolio.",
+
+        image:
+            "",
+
+        details: [
+            {
+                label: "TYPE",
+                value:
+                    "Creative Work"
+            },
+            {
+                label: "STATUS",
+                value:
+                    "Portfolio Archive"
+            }
+        ]
+
+    },
+
+
+    /* =====================================================
+       EXTRA PROJECT 08
+    ===================================================== */
+
+    "project-8": {
+
+        kicker:
+            "08 / CREATIVE WORK",
+
+        title:
+            "Additional Project",
+
+        description:
+            "Additional creative work from the full portfolio.",
+
+        image:
+            "",
+
+        details: [
+            {
+                label: "TYPE",
+                value:
+                    "Creative Work"
+            },
+            {
+                label: "STATUS",
+                value:
+                    "Portfolio Archive"
+            }
+        ]
+
+    },
+
+
+    /* =====================================================
+       EXTRA PROJECT 09
+    ===================================================== */
+
+    "project-9": {
+
+        kicker:
+            "09 / CREATIVE WORK",
+
+        title:
+            "Additional Project",
+
+        description:
+            "Additional creative work from the full portfolio.",
+
+        image:
+            "",
+
+        details: [
+            {
+                label: "TYPE",
+                value:
+                    "Creative Work"
+            },
+            {
+                label: "STATUS",
+                value:
+                    "Portfolio Archive"
+            }
+        ]
+
+    },
+
+
+    /* =====================================================
+       EXTRA PROJECT 10
+    ===================================================== */
+
+    "project-10": {
+
+        kicker:
+            "10 / CREATIVE WORK",
+
+        title:
+            "Additional Project",
+
+        description:
+            "Additional creative work from the full portfolio.",
+
+        image:
+            "",
+
+        details: [
+            {
+                label: "TYPE",
+                value:
+                    "Creative Work"
+            },
+            {
+                label: "STATUS",
+                value:
+                    "Portfolio Archive"
+            }
+        ]
+
+    }
+
+};
+
+
+/* =========================================================
+   11. SERVICE DATA
+========================================================= */
+
+const serviceData = {
+
+
+    "graphic-design": {
+
+        kicker:
+            "01 / SERVICE",
+
+        title:
+            "Graphic Design",
+
+        description:
+            "Visual communication, composition, branding and production-ready artwork.",
+
+        image:
+            "images/service-graphic-design.jpg",
+
+        details: [
+            {
+                label: "SERVICE",
+                value:
+                    "Graphic Design"
+            },
+            {
+                label: "FOCUS",
+                value:
+                    "Visual Communication"
+            },
+            {
+                label: "OUTPUT",
+                value:
+                    "Print & Digital"
+            }
+        ]
+
+    },
+
+
+    "digital-printing": {
+
+        kicker:
+            "02 / SERVICE",
+
+        title:
+            "Digital Printing",
+
+        description:
+            "Digital printing production with artwork preparation and quality-focused output.",
+
+        image:
+            "images/service-digital-printing.jpg",
+
+        details: [
+            {
+                label: "SERVICE",
+                value:
+                    "Digital Printing"
+            },
+            {
+                label: "FOCUS",
+                value:
+                    "Print Production"
+            },
+            {
+                label: "PROCESS",
+                value:
+                    "Design to Print"
+            }
+        ]
+
+    },
+
+
+    "uv-printing": {
+
+        kicker:
+            "03 / SERVICE",
+
+        title:
+            "UV Printing",
+
+        description:
+            "UV printing machine operation and print preparation for production work.",
+
+        image:
+            "images/service-uv-printing.jpg",
+
+        details: [
+            {
+                label: "SERVICE",
+                value:
+                    "UV Printing"
+            },
+            {
+                label: "FOCUS",
+                value:
+                    "UV Print"
+            },
+            {
+                label: "PROCESS",
+                value:
+                    "Production"
+            }
+        ]
+
+    },
+
+
+    "print-preparation": {
+
+        kicker:
+            "04 / SERVICE",
+
+        title:
+            "Print Preparation",
+
+        description:
+            "Preparing artwork and files for accurate production while keeping layouts, sizing and final output requirements in mind.",
+
+        image:
+            "images/service-print-preparation.jpg",
+
+        details: [
+            {
+                label: "SERVICE",
+                value:
+                    "Print Preparation"
+            },
+            {
+                label: "FOCUS",
+                value:
+                    "Artwork Setup"
+            },
+            {
+                label: "OUTPUT",
+                value:
+                    "Production Ready"
+            }
+        ]
+
+    }
+
+};
+
+
+/* =========================================================
+   12. EXPERIENCE DATA
+========================================================= */
+
+const experienceData = {
+
+
+    main: {
+
+        kicker:
+            "EXPERIENCE / 7+ YEARS",
+
+        title:
+            "Graphic Designer & Printing Machine Operator",
+
+        description:
+            "A career built across graphic design, signwork, digital printing, UV printing, artwork preparation and production.",
+
+        /*
+            Experience intentionally has NO image.
+        */
+
+        image:
+            "",
+
+        details: [
+
+            {
+                label:
+                    "2023 — PRESENT",
+
+                value:
+                    "Graphic Designer — Signwork, Saudi Arabia. Working across visual design, signwork, artwork preparation and production."
+            },
+
+
+            {
+                label:
+                    "2022 — 2023",
+
+                value:
+                    "Graphic Designer — Signwork, Dubai, UAE. Worked on graphic design and signwork production, preparing artwork according to production requirements."
+            },
+
+
+            {
+                label:
+                    "2017 — 2022",
+
+                value:
+                    "Graphic Designer & Printing Machine Operator — JMD Graphics, Delhi, India. Worked across graphic design, digital printing and UV printing operations."
+            },
+
+
+            {
+                label:
+                    "DESIGN TOOLS",
+
+                value:
+                    "Adobe Illustrator, Photoshop, CorelDRAW and Adobe Acrobat."
+            },
+
+
+            {
+                label:
+                    "MACHINE EXPERIENCE",
+
+                value:
+                    "Flatbed, UV Roll to Roll, Epson, HP, Roland, Mimaki and related printing equipment."
+            },
+
+
+            {
+                label:
+                    "PRODUCTION",
+
+                value:
+                    "Artwork preparation, print setup, machine operation, production support and quality checking."
+            },
+
+
+            {
+                label:
+                    "SPECIALIZATION",
+
+                value:
+                    "Graphic Design, Digital Printing, UV Printing, Signwork and Print Production."
+            }
+
+        ]
+
+    }
+
+};
+
+
+/* =========================================================
+   13. MODAL ELEMENTS
+========================================================= */
+
+const modal =
+    $("#detailModal");
+
+const modalWindow =
+    $(".modal-window");
+
+const modalClose =
+    $("#modalClose");
+
+const modalImage =
+    $("#modalImage");
+
+const modalKicker =
+    $("#modalKicker");
+
+const modalTitle =
+    $("#modalTitle");
+
+const modalDescription =
+    $("#modalDescription");
+
+const modalMeta =
+    $("#modalMeta");
+
+const modalDetails =
+    $("#modalDetails");
+
+
+let modalIsOpen = false;
+
+
+/* =========================================================
+   14. OPEN MODAL
+========================================================= */
+
+function openModal(data) {
+
+    if (!modal || !data) {
+        return;
+    }
+
+
+    /*
+        RESET
+    */
+
+    modalKicker.textContent =
+        data.kicker || "";
+
+    modalTitle.textContent =
+        data.title || "";
+
+    modalDescription.textContent =
+        data.description || "";
+
+
+    /*
+        IMAGE
+    */
+
+    modalImage.innerHTML = "";
+
+
+    if (data.image) {
+
+        const image =
+            document.createElement("img");
+
+        image.src =
+            data.image;
+
+        image.alt =
+            data.title || "Portfolio image";
+
+        modalImage.appendChild(
+            image
+        );
+
+    }
+
+
+    /*
+        META
+    */
+
+    modalMeta.innerHTML = "";
+
+
+    if (data.details) {
+
+        const metaItems =
+            data.details.slice(
+                0,
+                Math.min(
+                    data.details.length,
+                    3
+                )
+            );
+
+
+        metaItems.forEach(item => {
+
+            const box =
+                document.createElement("div");
+
+            const label =
+                document.createElement("span");
+
+            const value =
+                document.createElement("strong");
+
+
+            label.textContent =
+                item.label;
+
+            value.textContent =
+                item.value;
+
+
+            box.append(
+                label,
+                value
+            );
+
+            modalMeta.appendChild(
+                box
+            );
+
+        });
+
+    }
+
+
+    /*
+        DETAILS
+    */
+
+    modalDetails.innerHTML = "";
+
+
+    if (data.details) {
+
+        data.details.forEach(item => {
+
+            const row =
+                document.createElement("div");
+
+            row.className =
+                "modal-detail-row";
+
+
+            const label =
+                document.createElement("span");
+
+            const value =
+                document.createElement("p");
+
+
+            label.textContent =
+                item.label;
+
+            value.textContent =
+                item.value;
+
+
+            row.append(
+                label,
+                value
+            );
+
+
+            modalDetails.appendChild(
+                row
+            );
+
+        });
+
+    }
+
+
+    /*
+        OPEN
+    */
+
+    modal.classList.add(
+        "is-open"
+    );
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
+    modalIsOpen = true;
+
+
+    /*
+        Start modal content
+        animation from clean state.
+    */
+
+    requestAnimationFrame(() => {
+
+        if (modalWindow) {
+
+            modalWindow.scrollTop = 0;
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   15. CLOSE MODAL
+========================================================= */
+
+function closeModal() {
+
+    if (!modal || !modalIsOpen) {
+        return;
+    }
+
+
+    modal.classList.remove(
+        "is-open"
+    );
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+    modalIsOpen = false;
+
+
+    /*
+        Give closing animation
+        time to finish before
+        clearing content.
+    */
+
+    setTimeout(() => {
+
+        if (!modalIsOpen) {
+
+            modalImage.innerHTML = "";
+
+        }
+
+    }, 500);
+
+}
+
+
+/* =========================================================
+   16. PROJECT CLICK
+========================================================= */
+
+$$("[data-project]")
+    .forEach(card => {
+
+        function activateProject() {
+
+            const id =
+                card.dataset.project;
+
+            const data =
+                projectData[id];
+
+            if (data) {
+
+                openModal(data);
+
+            }
+
+        }
+
+
+        card.addEventListener(
+            "click",
+            activateProject
+        );
+
+
+        card.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    activateProject();
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   17. SERVICE CLICK
+========================================================= */
+
+$$("[data-service]")
+    .forEach(card => {
+
+        function activateService() {
+
+            const id =
+                card.dataset.service;
+
+            const data =
+                serviceData[id];
+
+            if (data) {
+
+                openModal(data);
+
+            }
+
+        }
+
+
+        card.addEventListener(
+            "click",
+            activateService
+        );
+
+
+        card.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    activateService();
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   18. EXPERIENCE CLICK
+========================================================= */
+
+$$("[data-experience]")
+    .forEach(card => {
+
+        function activateExperience() {
+
+            const id =
+                card.dataset.experience;
+
+            const data =
+                experienceData[id];
+
+            if (data) {
+
+                openModal(data);
+
+            }
+
+        }
+
+
+        card.addEventListener(
+            "click",
+            activateExperience
+        );
+
+
+        card.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    activateExperience();
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   19. MODAL CLOSE EVENTS
+========================================================= */
+
+if (modalClose) {
+
+    modalClose.addEventListener(
+        "click",
+        closeModal
+    );
+
+}
+
+
+const modalBackdrop =
+    $(".modal-backdrop");
+
+
+if (modalBackdrop) {
+
+    modalBackdrop.addEventListener(
+        "click",
+        closeModal
+    );
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            modalIsOpen
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   20. INTERNAL SMOOTH LINKS
+========================================================= */
+
+$$('a[href^="#"]')
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const targetId =
+                    link.getAttribute("href");
+
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) {
+                    return;
+                }
+
+
+                const target =
+                    document.querySelector(
+                        targetId
+                    );
+
+
+                if (!target) {
+                    return;
+                }
+
+
+                event.preventDefault();
+
+
+                closeMobileMenu();
+
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   21. BACK TO TOP
 ========================================================= */
 
 const backToTop =
-    document.getElementById(
-        "backToTop"
-    );
+    $("#backToTop");
 
 
 function updateBackToTop() {
-
 
     if (!backToTop) {
         return;
     }
 
 
-    if (
-        window.scrollY > 600
-    ) {
-
-        backToTop.classList.add(
-            "show"
-        );
-
-    } else {
-
-        backToTop.classList.remove(
-            "show"
-        );
-
-    }
+    backToTop.classList.toggle(
+        "is-visible",
+        window.scrollY > 700
+    );
 
 }
 
@@ -1792,9 +1637,6 @@ window.addEventListener(
 );
 
 
-updateBackToTop();
-
-
 if (backToTop) {
 
     backToTop.addEventListener(
@@ -1802,11 +1644,8 @@ if (backToTop) {
         () => {
 
             window.scrollTo({
-
                 top: 0,
-
                 behavior: "smooth"
-
             });
 
         }
@@ -1815,93 +1654,61 @@ if (backToTop) {
 }
 
 
+updateBackToTop();
+
+
 /* =========================================================
-   25. SMOOTH INTERNAL LINKS
+   22. IMAGE ERROR HANDLING
 ========================================================= */
 
+$$("img")
+    .forEach(image => {
 
-/*
-    Browser ka default anchor scroll already
-    smooth hai because CSS mein:
+        image.addEventListener(
+            "error",
+            () => {
 
-    html {
-        scroll-behavior: smooth;
-    }
+                image.style.display =
+                    "none";
 
-    Yahan extra handling sirf navbar offset
-    ko better banane ke liye hai.
-*/
+                const parent =
+                    image.parentElement;
 
+                if (parent) {
 
-const internalLinks =
-    document.querySelectorAll(
-        'a[href^="#"]'
-    );
+                    parent.classList.add(
+                        "image-missing"
+                    );
 
+                }
 
-internalLinks.forEach((link) => {
+            }
+        );
 
-
-    link.addEventListener(
-        "click",
-        (event) => {
+    });
 
 
-            const targetId =
-                link.getAttribute("href");
+/* =========================================================
+   23. PREVENT SPACE KEY FROM SCROLLING
+       ON CLICKABLE CARDS
+========================================================= */
 
+$$(
+    "[data-project], [data-service], [data-experience]"
+)
+.forEach(element => {
+
+    element.addEventListener(
+        "keydown",
+        event => {
 
             if (
-                !targetId ||
-                targetId === "#"
+                event.key === " "
             ) {
 
-                return;
+                event.preventDefault();
 
             }
-
-
-            const target =
-                document.querySelector(
-                    targetId
-                );
-
-
-            if (!target) {
-
-                return;
-
-            }
-
-
-            event.preventDefault();
-
-
-            const navbarHeight =
-                navbar
-                    ? navbar.offsetHeight
-                    : 0;
-
-
-            const targetPosition =
-                target.getBoundingClientRect()
-                    .top
-                + window.scrollY
-                - navbarHeight
-                - 10;
-
-
-            window.scrollTo({
-
-                top:
-                    Math.max(
-                        targetPosition,
-                        0
-                    ),
-
-                behavior: "smooth"
-
-            });
 
         }
     );
@@ -1910,158 +1717,9 @@ internalLinks.forEach((link) => {
 
 
 /* =========================================================
-   26. IMAGE PRELOAD HELPER
-========================================================= */
-
-
-/*
-    Future mein bahut images add karne par
-    browser loading ko smooth rakhne ke liye
-    helper function.
-*/
-
-
-function preloadImage(src) {
-
-
-    return new Promise(
-        (resolve, reject) => {
-
-
-            if (!src) {
-
-                reject(
-                    new Error(
-                        "Image path is empty."
-                    )
-                );
-
-                return;
-
-            }
-
-
-            const image =
-                new Image();
-
-
-            image.onload =
-                () => resolve(image);
-
-
-            image.onerror =
-                () => reject(
-                    new Error(
-                        `Unable to load image: ${src}`
-                    )
-                );
-
-
-            image.src = src;
-
-        }
-    );
-
-}
-/* ============================================================
-   FEATURED HERO IMAGES
-   Future mein sirf yahan image names change karne hain.
-============================================================ */
-
-const featuredImages = [
-    {
-        image: "images/featured-01-kilian-campaign.jpg",
-        title: "KILIAN",
-        small: "VISUAL CAMPAIGN"
-    },
-    {
-        image: "images/featured-02-dior-prestige.jpg",
-        title: "DIOR",
-        small: "PRODUCT ADVERTISING"
-    },
-    {
-        image: "images/featured-03-dior-prestige.jpg",
-        title: "DIOR PRESTIGE",
-        small: "LUXURY VISUAL DESIGN"
-    },
-    {
-        image: "images/featured-04-ysl-beauty.jpg",
-        title: "YSL BEAUTY",
-        small: "BEAUTY CAMPAIGN"
-    }
-];
-
-const featuredCard = document.querySelector(".hero-card");
-
-if (featuredCard && featuredImages.length) {
-
-    const featuredCircle =
-        featuredCard.querySelector(".art-circle");
-
-    const featuredText =
-        featuredCard.querySelector(".art-text");
-
-    const featuredSmall =
-        featuredCard.querySelector(".art-small");
-
-    const featuredCounter =
-        featuredCard.querySelector(".hero-card-top span:nth-child(2)");
-
-    let featuredIndex = 0;
-
-    function showFeaturedImage(index) {
-
-        const item = featuredImages[index];
-
-        if (!item || !featuredCircle) return;
-
-        featuredCircle.style.opacity = "0.15";
-
-setTimeout(() => {
-    featuredCircle.style.backgroundImage =
-        `url("${item.image}")`;
-
-    featuredCircle.style.opacity = "1";
-}, 300);
-
-        featuredCircle.style.backgroundSize = "cover";
-        featuredCircle.style.backgroundPosition = "center";
-
-        if (featuredText) {
-            featuredText.textContent = item.title;
-        }
-
-        if (featuredSmall) {
-            featuredSmall.textContent = item.small;
-        }
-
-        if (featuredCounter) {
-            featuredCounter.textContent =
-                `${String(index + 1).padStart(2, "0")} / ${String(featuredImages.length).padStart(2, "0")}`;
-        }
-    }
-
-    showFeaturedImage(featuredIndex);
-
-    setInterval(() => {
-
-        featuredIndex =
-            (featuredIndex + 1) % featuredImages.length;
-
-        showFeaturedImage(featuredIndex);
-
-    }, 5000);
-}
-
-/* =========================================================
-   27. CONSOLE MESSAGE
+   24. FINAL
 ========================================================= */
 
 console.log(
-    "Ajay Kushwaha Portfolio loaded successfully."
+    "AJAY KUSHWHA V2 loaded successfully."
 );
-
-
-/* =========================================================
-   END OF script.js
-========================================================= */
