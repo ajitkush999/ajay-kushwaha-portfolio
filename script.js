@@ -674,177 +674,237 @@ const projectData = {
     },
 
 
-    /* =====================================================
-       EXTRA PROJECT 06
+        /* =====================================================
+       PROJECT 06
     ===================================================== */
 
     "project-6": {
 
         kicker:
-            "06 / CREATIVE WORK",
+            "06 / BEAUTY / CREATIVE",
 
         title:
-            "Additional Project",
+            "Beauty Product Campaign",
 
         description:
-            "Additional creative work from the full portfolio.",
+            "A beauty-focused visual composition combining product presentation, portrait imagery and premium campaign styling.",
 
         image:
-            "",
+            "images/project-06.webp",
 
         details: [
+
             {
-                label: "TYPE",
+                label: "FOCUS",
+
                 value:
-                    "Creative Work"
+                    "Beauty & Product Visuals"
             },
+
             {
-                label: "STATUS",
+                label: "STYLE",
+
                 value:
-                    "Portfolio Archive"
+                    "Premium / Editorial"
+            },
+
+            {
+                label: "OUTPUT",
+
+                value:
+                    "Campaign Artwork"
             }
+
         ]
 
     },
 
 
     /* =====================================================
-       EXTRA PROJECT 07
+       PROJECT 07
     ===================================================== */
 
     "project-7": {
 
         kicker:
-            "07 / CREATIVE WORK",
+            "07 / PRODUCT DISPLAY",
 
         title:
-            "Additional Project",
+            "Beauty Display Campaign",
 
         description:
-            "Additional creative work from the full portfolio.",
+            "A product-focused display composition designed around beauty products, visual hierarchy and premium presentation.",
 
         image:
-            "",
+            "images/project-07.webp",
 
         details: [
+
             {
-                label: "TYPE",
+                label: "FOCUS",
+
                 value:
-                    "Creative Work"
+                    "Product Presentation"
             },
+
             {
-                label: "STATUS",
+                label: "STYLE",
+
                 value:
-                    "Portfolio Archive"
+                    "Beauty / Premium"
+            },
+
+            {
+                label: "OUTPUT",
+
+                value:
+                    "Display Artwork"
             }
+
         ]
 
     },
 
 
     /* =====================================================
-       EXTRA PROJECT 08
+       PROJECT 08
     ===================================================== */
 
     "project-8": {
 
         kicker:
-            "08 / CREATIVE WORK",
+            "08 / FRAGRANCE / BEAUTY",
 
         title:
-            "Additional Project",
+            "Fragrance Visual",
 
         description:
-            "Additional creative work from the full portfolio.",
+            "A refined fragrance-focused composition using product imagery, floral elements and a soft premium visual language.",
 
         image:
-            "",
+            "images/project-08.webp",
 
         details: [
+
             {
-                label: "TYPE",
+                label: "FOCUS",
+
                 value:
-                    "Creative Work"
+                    "Fragrance Visual"
             },
+
             {
-                label: "STATUS",
+                label: "STYLE",
+
                 value:
-                    "Portfolio Archive"
+                    "Premium / Floral"
+            },
+
+            {
+                label: "OUTPUT",
+
+                value:
+                    "Advertising Artwork"
             }
+
         ]
 
     },
 
 
     /* =====================================================
-       EXTRA PROJECT 09
+       PROJECT 09
     ===================================================== */
 
     "project-9": {
 
         kicker:
-            "09 / CREATIVE WORK",
+            "09 / LUXURY / BEAUTY",
 
         title:
-            "Additional Project",
+            "Dior Prestige Visual",
 
         description:
-            "Additional creative work from the full portfolio.",
+            "A luxury beauty composition focused on premium product presentation, packaging and elegant visual communication.",
 
         image:
-            "",
+            "images/project-09.webp",
 
         details: [
+
             {
-                label: "TYPE",
+                label: "FOCUS",
+
                 value:
-                    "Creative Work"
+                    "Luxury Beauty"
             },
+
             {
-                label: "STATUS",
+                label: "STYLE",
+
                 value:
-                    "Portfolio Archive"
+                    "Premium / Editorial"
+            },
+
+            {
+                label: "OUTPUT",
+
+                value:
+                    "Campaign Artwork"
             }
+
         ]
 
     },
 
 
     /* =====================================================
-       EXTRA PROJECT 10
+       PROJECT 10
     ===================================================== */
 
     "project-10": {
 
         kicker:
-            "10 / CREATIVE WORK",
+            "10 / PRODUCT / DISPLAY",
 
         title:
-            "Additional Project",
+            "Luxury Product Display",
 
         description:
-            "Additional creative work from the full portfolio.",
+            "A premium product display composition built around fragrance and beauty products with a strong visual hierarchy.",
 
         image:
-            "",
+            "images/project-10.webp",
 
         details: [
+
             {
-                label: "TYPE",
+                label: "FOCUS",
+
                 value:
-                    "Creative Work"
+                    "Product Display"
             },
+
             {
-                label: "STATUS",
+                label: "STYLE",
+
                 value:
-                    "Portfolio Archive"
+                    "Luxury / Premium"
+            },
+
+            {
+                label: "OUTPUT",
+
+                value:
+                    "Display Artwork"
             }
+
         ]
 
     }
 
 };
-
+    
 
 /* =========================================================
    11. SERVICE DATA
